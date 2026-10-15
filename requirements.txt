@@ -1,0 +1,23 @@
+# Python 3.12 (mínimo 3.10). Tras la primera instalación que funcione,
+# fijad versiones exactas: python -m pip freeze > requirements-lock.txt
+
+# --- Agente (PB2) ---
+langgraph>=1.0,<2
+google-genai>=1.0
+python-dotenv
+requests
+streamlit>=1.50
+tzdata              # zona horaria Europe/Madrid también en Windows
+
+# --- RAG del PB1 (paquete rag/) ---
+chromadb
+sentence-transformers   # instala torch; la 1ª vez descarga el modelo (~470 MB)
+langchain-core
+langchain-text-splitters
+langchain-community
+pypdf
+pandas
+openpyxl
+
+# --- Tests ---
+pytest
