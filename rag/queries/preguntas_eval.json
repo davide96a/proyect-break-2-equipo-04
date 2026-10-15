@@ -1,0 +1,103 @@
+{
+  "descripcion": "Preguntas para evaluar las respuestas del RAG de deporte municipal de Madrid. Criterios: evidencia (la fuente esperada aparece en las fuentes devueltas), grounding (la respuesta se sostiene en el contexto y coincide con la esperada, sin inventar) y abstención (si deberia_abstenerse es true debe abstenerse; si es false, no).",
+  "preguntas": [
+    {
+      "id": "q1",
+      "texto": "¿Cuánto cuesta la entrada a la piscina de verano para adultos?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "300083-10-deportes-tarifas.xlsx",
+      "respuesta_esperada": "4,5 € (turno completo).",
+      "notas": "In-corpus, dato puntual de tarifas."
+    },
+    {
+      "id": "q2",
+      "texto": "¿Cuánto cuesta la entrada a la piscina cubierta para adultos y cuánto dura como máximo la sesión?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "300083-10-deportes-tarifas.xlsx",
+      "respuesta_esperada": "2,5 € y una duración máxima de 60 minutos.",
+      "notas": "In-corpus, dos datos en la misma pregunta (precio y duración)."
+    },
+    {
+      "id": "q3",
+      "texto": "¿Cuánto cuesta la cuota mensual total del Abono Deporte Madrid para un adulto?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "300083-10-deportes-tarifas.xlsx",
+      "respuesta_esperada": "47,45 € (cuota mensual total, adulto).",
+      "notas": "In-corpus. Hay varias modalidades y edades casi idénticas: debe elegir total y adulto."
+    },
+    {
+      "id": "q4",
+      "texto": "¿Cuál es el horario de taquilla del Centro Deportivo Municipal Alcántara?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "200186-0-polideportivos-csv.csv",
+      "respuesta_esperada": "Lunes a viernes de 7 a 23 h, sábados de 9 a 20 h, domingos y festivos de 9 a 15 h.",
+      "notas": "In-corpus, ficha de un centro concreto. Muchos centros tienen el mismo formato de horario."
+    },
+    {
+      "id": "q5",
+      "texto": "¿Cuál es la estación de metro más cercana a la instalación deportiva básica Pádel Madrid Las Tablas?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "200215-0-instalaciones-deportivas-csv.csv",
+      "respuesta_esperada": "Metro Las Tablas (línea 10).",
+      "notas": "In-corpus, ficha de instalación."
+    },
+    {
+      "id": "q6",
+      "texto": "¿Qué pasos hay que seguir para adquirir online el Abono Deporte Madrid?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "20250912_InfografíaCómoAdquirirOrenovarUnADM.pdf",
+      "respuesta_esperada": "Iniciar sesión en DeportesWeb, ir a Mis gestiones / Abono Deporte Madrid y elegir Alta o Renovación.",
+      "notas": "In-corpus, procedimiento en PDF (infografía)."
+    },
+    {
+      "id": "q7",
+      "texto": "¿Qué requisitos debe cumplir una entidad para solicitar una reserva de temporada de una instalación deportiva?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "eli-es-md-01860896-reg-2012-10-15-(1)-dof-spa.pdf",
+      "respuesta_esperada": "Tener el domicilio social en el municipio de Madrid y carecer de instalaciones deportivas adecuadas o suficientes.",
+      "notas": "In-corpus, texto normativo (reglamento de 2012)."
+    },
+    {
+      "id": "q8",
+      "texto": "¿Cuántos descuentos por edad mayor se han aplicado en total según los datos de descuentos?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "300097-3-deportes-descuentos-csv.csv",
+      "respuesta_esperada": "1.464.596 registros de uso (son registros de uso, no reglas de descuento).",
+      "notas": "In-corpus, dato agregado del CSV de descuentos."
+    },
+    {
+      "id": "q9",
+      "texto": "¿Qué reducción tienen las personas desempleadas en la entrada de piscina cubierta?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "300083-10-deportes-tarifas.xlsx",
+      "respuesta_esperada": "Una reducción del 70%.",
+      "notas": "In-corpus, dato dentro de las observaciones de una tarifa. Con k bajo llegan los fragmentos de la piscina de verano."
+    },
+    {
+      "id": "q10",
+      "texto": "¿Cuánto cuesta el abono de piscina?",
+      "deberia_abstenerse": false,
+      "fuente_esperada": "300083-10-deportes-tarifas.xlsx",
+      "respuesta_esperada": "El corpus solo tiene el Abono Deporte Madrid (47,45 € total, 35,6 € reducido, 23,75 € fin de semana), no un abono específico de piscina.",
+      "notas": "Caso difícil y fallo conocido del retriever (informe, fallo 2). Abstenerse aquí es aceptable pero cuenta como fallo de retrieval."
+    },
+    {
+      "id": "q11",
+      "texto": "¿Cuál es la capital de Francia?",
+      "deberia_abstenerse": true,
+      "notas": "Fuera de corpus, sin relación con el dominio. Debe abstenerse, no inventar."
+    },
+    {
+      "id": "q12",
+      "texto": "¿Cuánto cuesta el abono mensual de transporte público en Madrid?",
+      "deberia_abstenerse": true,
+      "notas": "Fuera de corpus pero cercano: hay tarifas de 'abono' deportivo que pueden confundir. Debe abstenerse."
+    },
+    {
+      "id": "q13",
+      "texto": "¿Quién ganó el último Mundial de fútbol?",
+      "deberia_abstenerse": true,
+      "notas": "Fuera de corpus: es deporte, pero no deporte municipal de Madrid."
+    }
+  ]
+}
