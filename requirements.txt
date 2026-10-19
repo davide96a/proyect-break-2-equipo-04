@@ -4,6 +4,7 @@
 # --- Agente (PB2) ---
 langgraph>=1.0,<2
 google-genai>=1.0
+langchain-google-genai   # LLM del grafo (permite FakeListChatModel en tests)
 python-dotenv
 requests
 streamlit>=1.50

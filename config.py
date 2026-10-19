@@ -22,6 +22,9 @@ MAX_ITER = 6     # pasos máximos del supervisor por turno
 MAX_STEPS = 3    # llamadas a tools máximas por especialista y turno
 MAX_TURNS = 10   # turnos de usuario por conversación (thread_id)
 
+# --- Mocks (USE_MOCKS=1 en .env → tools falsas, sin red ni Gemini en las tools) ---
+USE_MOCKS = os.getenv("USE_MOCKS", "0") == "1"
+
 # --- Rutas ---
 DATA_DIR = BASE_DIR / "data"
 ASSETS_DIR = BASE_DIR / "assets"
