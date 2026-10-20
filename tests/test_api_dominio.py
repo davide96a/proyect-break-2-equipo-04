@@ -87,3 +87,32 @@ def test_el_respaldo_real_tiene_el_formato_esperado():
     datos = json.loads(api.RUTA_FALLBACK.read_text(encoding="utf-8-sig"))
     assert isinstance(datos["@graph"], list) and datos["@graph"]
     assert "title" in datos["@graph"][0]
+
+    
+def test_descarta_actividades_terminadas(eventos):
+    assert api._buscar(eventos, "ajedrez", 5, HOY) == []
+
+
+def test_busca_por_palabra_del_titulo(eventos):
+    r = api._buscar(eventos, "quiero yoga", 5, HOY)
+    assert [e["title"] for e in r] == ["Yoga al aire libre"]
+
+
+def test_gratis_excluye_las_de_pago(eventos):
+    titulos = [e["title"] for e in api._buscar(eventos, "gratis", 5, HOY)]
+    assert "Yoga al aire libre" in titulos
+    assert "Torneo de pádel" not in titulos
+
+
+def test_el_limite_se_respeta():
+    muchos = [_evento(f"Clase {i}", "2026-09-01", "2099-12-31") for i in range(12)]
+    assert len(api._buscar(muchos, "clase", 3, HOY)) == 3
+
+
+def test_sin_coincidencias_se_abstiene(con_red):
+    assert api.api_deporte("natacion sincronizada")["status"] == "abstencion"
+
+
+def test_limite_invalido_no_rompe(con_red):
+    assert api.api_deporte("yoga", limite="abc")["status"] == "ok"
+    assert api.api_deporte("yoga", limite=999)["status"] == "ok"
