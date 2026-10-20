@@ -73,7 +73,7 @@ def procesar_turno(mensaje: str, thread_id: str) -> dict:
         "messages": [{"role": "user", "content": mensaje}],
         "consulta": _consulta_con_historial(mensaje, snapshot.values.get("messages", [])),
         "turnos": turnos + 1, "iter": 0, "siguiente": "", "notas": {}, "log": [],
-        "traza_tools": [], "respuesta": "", "plan": [], "aprobado": None, "done": False,
+        "traza_tools": [], "respuesta": "", "plan": [], "sin_datos": False, "aprobado": None, "done": False,
     }
     try:
         grafo.invoke(entrada, _config(thread_id))  # se detiene antes de "aplicar"

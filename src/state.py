@@ -19,5 +19,6 @@ class EstadoGrafo(TypedDict, total=False):
     traza_tools: list[dict]  # entradas de ejecutar_tool
     respuesta: str           # propuesta redactada por sintetizar
     plan: list[str]          # viñetas que el humano aprueba o rechaza
+    sin_datos: bool          # ninguna tool devolvió datos → respuesta directa, sin HITL
     aprobado: bool | None    # decisión humana (la escribe aprobar_plan)
     done: bool               # True solo si el plan se aprobó y se aplicó (lo decide Python)

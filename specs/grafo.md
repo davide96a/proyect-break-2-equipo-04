@@ -13,15 +13,16 @@ graph TD
   especialista_tarifas --> supervisor
   especialista_instalaciones --> supervisor
   sintetizar -->|interrupt_before| aplicar
+  sintetizar -->|sin datos útiles| END
   aplicar --> END
 ```
 
 | Nodo | Qué hace | LLM | Fallback en Python |
 |---|---|---|---|
-| `supervisor` | Elige el siguiente nodo | Responde un nombre de la lista | Tarifas siempre primero; instalaciones si la pregunta habla de actividades/imagen; si no, sintetizar |
-| `especialista_tarifas` | Documentos oficiales | Elige tools de su lista | `rag_ask` (+ `hora_actual` si dice "hoy", "ahora"…) |
+| `supervisor` | Elige el siguiente nodo | Responde un nombre de la lista | Actividades/imagen → instalaciones; precios, abonos, normas o centros → tarifas; nada claro → tarifas; luego sintetizar |
+| `especialista_tarifas` | Documentos oficiales | Elige tools de su lista ("Ninguna" se ignora) | `rag_ask` (+ `hora_actual` si dice "hoy", "ahora"…) |
 | `especialista_instalaciones` | Agenda en vivo e imágenes | Elige tools de su lista | `api_deporte` (+ `describir_imagen` si hay imagen, + `hora_actual`) |
-| `sintetizar` | Respuesta + plan en viñetas | Redacta con `PLAN:` | Notas tal cual + plan mínimo |
+| `sintetizar` | Respuesta + plan en viñetas (solo pasos respaldados por las notas; la fuente va en la respuesta) | Redacta con `PLAN:` | Notas tal cual + plan mínimo. Si ninguna tool dio datos: respuesta directa sin plan ni HITL |
 | `aplicar` | Guarda el plan en `salidas/` | No | — |
 
 ## Tools por especialista (allowlist)
@@ -67,5 +68,12 @@ Una pregunta corta de seguimiento ("¿y para jubilados?") se completa con la pre
 
 ## Fallback del LLM
 
-Sin clave, con error de Gemini o con una respuesta inventada, el grafo funciona igual con las reglas de Python
-(`test_fallback_si_el_llm_falla`, `test_respuesta_inventada_del_supervisor_usa_fallback`).
+Sin clave, con error de Gemini (p. ej. 503) o con una respuesta inventada, el grafo funciona igual con las reglas de Python,
+y el log indica el motivo: `fallback: error LLM: ...`, `fallback: respuesta no válida '...'`, `fallback: sin LLM`
+(`test_fallback_si_el_llm_falla_y_el_log_dice_por_que`, `test_respuesta_inventada_del_supervisor_usa_fallback`).
+
+## Sin datos útiles
+
+Si ninguna tool devuelve `ok`, no se propone plan ni se pide aprobación: abstención → frase de abstención;
+errores → mensaje claro sin el error crudo (que queda en la traza)
+(`test_si_todas_las_tools_fallan_no_hay_plan_ni_hitl`, `test_abstencion_responde_sin_plan`).
