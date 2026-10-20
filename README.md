@@ -26,6 +26,22 @@ python -m rag --index
 python -m rag --ask "¿Cuánto cuesta el abono de piscina?"
 ```
 
+## Tool multimodal (`describir_imagen`)
+
+Imagen → texto con Gemini (`src/tools/describir_imagen.py`). Envía los bytes de la imagen y un prompt
+(más la pregunta del usuario, si la hay) y devuelve `{"status": "ok" | "error", "texto": ...}`; nunca lanza excepciones.
+
+- **Imagen demo:** `assets/imagen_demo.jpg`, la infografía «Cómo adquirir online un Abono Deporte Madrid». Sin ruta, la tool usa esta imagen.
+- **En el grafo:** la usa `especialista_instalaciones` cuando la pregunta menciona imagen, foto, cartel o infografía.
+- **Requiere** `GOOGLE_API_KEY` en `.env` (mismo modelo que el grafo, `LLM_MODEL`).
+
+Probarla aislada:
+
+```bash
+python -c "from src.tools.describir_imagen import describir_imagen; print(describir_imagen(pregunta='¿Qué pasos hay que seguir?'))"
+python -m pytest tests/test_describir_imagen.py -v   # sin red ni clave (Gemini simulado)
+```
+
 ## Estructura
 
 ```
