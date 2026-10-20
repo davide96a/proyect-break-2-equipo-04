@@ -1,6 +1,7 @@
 from google import genai
 
 import config
+from src.tools import ejecutar_tool
 from src.tools.describir_imagen import describir_imagen
 
 
@@ -55,3 +56,13 @@ def test_fallo_de_gemini_devuelve_error(monkeypatch):
 
     assert r["status"] == "error"
     assert "503" in r["texto"]
+
+
+def test_esta_en_la_allowlist(monkeypatch):
+    monkeypatch.setattr(config, "GOOGLE_API_KEY", "clave-falsa")
+    monkeypatch.setattr(genai, "Client", _ClienteFalso(texto="Infografía del abono."))
+
+    r = ejecutar_tool("describir_imagen", {"pregunta": "¿Qué pone?"})
+
+    assert r["status"] == "ok"
+    assert r["preview"] == "Infografía del abono."
