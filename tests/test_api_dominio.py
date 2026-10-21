@@ -8,6 +8,8 @@ import requests
 
 from src.tools import api_dominio as api
 
+from src.tools import ejecutar_tool
+
 HOY = date(2026, 10, 20)
 
 
@@ -116,3 +118,13 @@ def test_sin_coincidencias_se_abstiene(con_red):
 def test_limite_invalido_no_rompe(con_red):
     assert api.api_deporte("yoga", limite="abc")["status"] == "ok"
     assert api.api_deporte("yoga", limite=999)["status"] == "ok"
+
+def test_api_deporte_pasa_por_la_allowlist(con_red):
+    r = ejecutar_tool("api_deporte", {"consulta": "yoga"})
+    assert r["tool"] == "api_deporte"
+    assert r["status"] == "ok"
+    assert "Yoga" in r["preview"]
+
+def test_api_deporte_bloqueada_si_el_especialista_no_la_tiene(con_red):
+    r = ejecutar_tool("api_deporte", {"consulta": "yoga"}, permitidas=["rag_ask"])
+    assert r["status"] == "blocked"
