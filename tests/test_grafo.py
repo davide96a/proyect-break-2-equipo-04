@@ -85,12 +85,52 @@ def test_aprobar_sin_plan_pendiente_da_error(monkeypatch):
 
 
 # --------------------------------------------------- fallback y límites
-def test_fallback_si_el_llm_falla(monkeypatch):
+def test_fallback_si_el_llm_falla_y_el_log_dice_por_que(monkeypatch):
     _usar_llm(monkeypatch, LLMRoto())
     r = agent.procesar_turno("¿Qué actividades hay hoy en el polideportivo?", agent.nuevo_thread_id())
     assert r["pendiente_hitl"] and r["error"] is None
-    assert any("fallback" in linea for linea in r["log"])
-    assert {t["tool"] for t in r["traza_tools"]} >= {"rag_ask", "api_deporte", "hora_actual"}
+    assert "fallback: error LLM: RuntimeError" in r["log"][0]
+    # pregunta de actividades → instalaciones, sin pasar por tarifas
+    assert r["log"][0].startswith("supervisor → especialista_instalaciones")
+    assert {t["tool"] for t in r["traza_tools"]} == {"api_deporte", "hora_actual"}
+
+
+def test_fallback_pregunta_mixta_consulta_los_dos_especialistas(monkeypatch):
+    _usar_llm(monkeypatch, LLMRoto())
+    r = agent.procesar_turno("¿Cuánto cuesta el abono y qué actividades hay?", agent.nuevo_thread_id())
+    assert {t["especialista"] for t in r["traza_tools"]} == {"especialista_tarifas", "especialista_instalaciones"}
+
+
+def test_ninguna_no_se_ejecuta_como_tool(monkeypatch):
+    llm = FakeListChatModel(responses=["especialista_tarifas", "Ninguna", "sintetizar", "Resumen\nPLAN:\n- a"])
+    _usar_llm(monkeypatch, llm)
+    r = agent.procesar_turno("precio piscina", agent.nuevo_thread_id())
+    assert [t["tool"] for t in r["traza_tools"]] == ["rag_ask"]  # usa el fallback, no "ninguna"
+    assert any("el LLM no eligió ninguna tool" in linea for linea in r["log"])
+
+
+def test_si_todas_las_tools_fallan_no_hay_plan_ni_hitl(monkeypatch):
+    def rota(consulta):
+        raise RuntimeError("503 simulado")
+    monkeypatch.setitem(tools_fake.TOOLS_PERMITIDAS, "rag_ask", rota)
+    _usar_llm(monkeypatch, FakeListChatModel(responses=RESPUESTAS_OK))
+    r = agent.procesar_turno("precio piscina", agent.nuevo_thread_id())
+    assert not r["pendiente_hitl"] and not r["done"] and r["plan"] == []
+    assert "no puedo consultar" in r["respuesta"] and "503" not in r["respuesta"]
+
+
+def test_abstencion_responde_sin_plan(monkeypatch):
+    _usar_llm(monkeypatch, None)
+    r = agent.procesar_turno("¿Cuál es la capital de Francia?", agent.nuevo_thread_id())
+    assert not r["pendiente_hitl"] and "No tengo información suficiente" in r["respuesta"]
+
+
+def test_el_plan_no_lleva_la_fuente(monkeypatch):
+    llm = FakeListChatModel(responses=["especialista_tarifas", "rag_ask", "sintetizar",
+                                       "Cuesta 4,50 €.\nPLAN:\n- Ir a la piscina\n- Fuente: especialista_tarifas"])
+    _usar_llm(monkeypatch, llm)
+    r = agent.procesar_turno("precio piscina", agent.nuevo_thread_id())
+    assert r["plan"] == ["Ir a la piscina"]
 
 
 def test_respuesta_inventada_del_supervisor_usa_fallback(monkeypatch):
