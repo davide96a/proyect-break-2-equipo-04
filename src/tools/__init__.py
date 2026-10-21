@@ -1,5 +1,6 @@
 """Allowlist de tools y ejecución segura con traza (tool, args, status, preview)."""
 
+from src.tools.describir_imagen import describir_imagen
 from src.tools.hora_actual import hora_actual
 from src.tools.rag_ask import rag_ask
 
@@ -7,6 +8,7 @@ from src.tools.rag_ask import rag_ask
 TOOLS_PERMITIDAS = {
     "hora_actual": hora_actual,
     "rag_ask": rag_ask,
+    "describir_imagen": describir_imagen,
 }
 
 PREVIEW_MAX = 200

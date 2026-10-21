@@ -84,6 +84,22 @@ el índice del RAG ni red. Sin `GOOGLE_API_KEY`, el grafo funciona igual con los
 python -m pytest -q   # tests del grafo y de las tools: sin red ni clave
 ```
 
+## Tool multimodal (`describir_imagen`)
+
+Imagen → texto con Gemini (`src/tools/describir_imagen.py`). Envía los bytes de la imagen y un prompt
+(más la pregunta del usuario, si la hay) y devuelve `{"status": "ok" | "error", "texto": ...}`; nunca lanza excepciones.
+
+- **Imagen demo:** `assets/imagen_demo.jpg`, la infografía «Cómo adquirir online un Abono Deporte Madrid». Sin ruta, la tool usa esta imagen.
+- **En el grafo:** la usa `especialista_instalaciones` cuando la pregunta menciona imagen, foto, cartel o infografía.
+- **Requiere** `GOOGLE_API_KEY` en `.env` (mismo modelo que el grafo, `LLM_MODEL`).
+
+Probarla aislada:
+
+```bash
+python -c "from src.tools.describir_imagen import describir_imagen; print(describir_imagen(pregunta='¿Qué pasos hay que seguir?'))"
+python -m pytest tests/test_describir_imagen.py -v   # sin red ni clave (Gemini simulado)
+```
+
 ## Estructura
 
 ```
