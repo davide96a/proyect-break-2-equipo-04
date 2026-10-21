@@ -46,8 +46,9 @@ def describir_imagen(ruta: str = "", pregunta: str | None = None) -> dict:
                     ],
                 )
             ],
+            config={"temperature": config.TEMPERATURE},
         )
-    except Exception as e: 
+    except Exception as e:
         return {"status": "error", "texto": f"Error al leer la imagen: {e}"}
 
     descripcion = (out.text or "").strip()

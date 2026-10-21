@@ -9,14 +9,14 @@ class _ClienteFalso:
     """Sustituye a genai.Client: no hay red ni clave real. Guarda lo que se le envía."""
 
     def __init__(self, texto="", error=None):
-        self.texto, self.error, self.enviado = texto, error, None
+        self.texto, self.error, self.enviado, self.config = texto, error, None, None
         self.models = self
 
     def __call__(self, api_key):
         return self
 
-    def generate_content(self, model, contents):
-        self.enviado = contents
+    def generate_content(self, model, contents, config=None):
+        self.enviado, self.config = contents, config
         if self.error:
             raise self.error
         return type("Respuesta", (), {"text": self.texto})()
@@ -46,6 +46,7 @@ def test_gemini_simulado_describe_la_imagen_demo(monkeypatch):
     assert r["texto"] == "Infografía del Abono Deporte Madrid en 4 pasos."
     prompt = cliente.enviado[0].parts[1].text
     assert "¿Qué pasos hay que seguir?" in prompt
+    assert cliente.config == {"temperature": config.TEMPERATURE}
 
 
 def test_fallo_de_gemini_devuelve_error(monkeypatch):
