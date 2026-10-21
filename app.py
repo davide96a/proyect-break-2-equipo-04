@@ -5,7 +5,7 @@
 
 import streamlit as st
 
-from src.agent import nuevo_thread_id, procesar_turno
+from src.agent import aprobar_plan, nuevo_thread_id, procesar_turno
 
 st.set_page_config(page_title="Agente · Deporte municipal", page_icon="🏊", layout="centered")
 
@@ -33,11 +33,32 @@ def _texto_respuesta(resultado: dict) -> str:
     return texto
 
 
+def _decidir(aprobado: bool) -> None:
+    """HITL: el humano aprueba o rechaza el plan; la respuesta del agente va al chat."""
+    st.session_state.resultado = aprobar_plan(st.session_state.thread_id, aprobado)
+    texto = st.session_state.resultado.get("respuesta") or ("Plan aprobado." if aprobado else "Plan rechazado.")
+    st.session_state.messages.append({"role": "assistant", "content": texto})
+
+
 if "messages" not in st.session_state:
     _reset()
 
 with st.sidebar:
     st.caption(f"thread_id: `{st.session_state.thread_id}`")
+
+    resultado = st.session_state.resultado
+    if resultado.get("pendiente_hitl"):
+        st.divider()
+        st.subheader("HITL — aprobar plan")
+        for item in resultado.get("plan") or []:
+            st.markdown(f"- {item}")
+        c1, c2 = st.columns(2)
+        if c1.button("Aprobar", use_container_width=True, type="primary"):
+            _decidir(True)
+            st.rerun()
+        if c2.button("Rechazar", use_container_width=True):
+            _decidir(False)
+            st.rerun()
 
 st.title("Asistente de Deporte Municipal")
 st.caption("Supervisor + especialistas + tools (RAG, API, hora, imagen) · MemorySaver · HITL")
@@ -58,3 +79,7 @@ if prompt := st.chat_input("Tu pregunta sobre deporte municipal..."):
         texto = _texto_respuesta(resultado)
         st.markdown(texto)
     st.session_state.messages.append({"role": "assistant", "content": texto})
+
+    # La barra lateral ya se dibujó arriba: rerun para que aparezcan Aprobar / Rechazar
+    if resultado.get("pendiente_hitl"):
+        st.rerun()
