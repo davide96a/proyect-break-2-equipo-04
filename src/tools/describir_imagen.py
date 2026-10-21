@@ -9,6 +9,9 @@ PROMPT = (
     "Si hay texto, pasos, fechas, precios o lugares visibles, menciónalos."
 )
 
+# Extensiones permitidas → tipo MIME que se envía a Gemini
+EXTENSIONES = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
+
 
 def describir_imagen(ruta: str = "", pregunta: str | None = None) -> dict:
     """Describe una imagen del deporte municipal (infografía, cartel, folleto).
@@ -17,11 +20,22 @@ def describir_imagen(ruta: str = "", pregunta: str | None = None) -> dict:
     Úsala cuando el usuario mencione una imagen, foto, cartel o infografía.
     """
     path = Path(ruta) if (ruta or "").strip() else config.IMAGEN_DEMO
-    if not path.is_absolute():
-        path = (config.BASE_DIR / path).resolve()
+    if not path.is_absolute():  # ruta relativa ("assets/x.jpg") → desde la raíz del proyecto
+        path = config.BASE_DIR / path
+    path = path.resolve()  # resuelve "..", así no se puede salir de assets/
+
+    # ¿Está dentro de assets/? Así nunca se envía a Gemini otro archivo (.env, config.py...)
+    if not path.is_relative_to(config.ASSETS_DIR.resolve()):
+        return {"status": "error", "texto": "Error: solo se pueden describir imágenes de assets/"}
+    # ¿Es una imagen? Solo se aceptan las extensiones de EXTENSIONES (y de ahí sale su MIME)
+    mime = EXTENSIONES.get(path.suffix.lower())
+    if mime is None:
+        return {"status": "error", "texto": f"Error: extensión no permitida ({', '.join(EXTENSIONES)})"}
+    # ¿Existe el archivo?
     if not path.exists():
         return {"status": "error", "texto": f"Error: no hay imagen en {path}"}
 
+    # ¿Hay clave para llamar a Gemini?
     if not config.GOOGLE_API_KEY:
         return {"status": "error", "texto": "Error: falta GOOGLE_API_KEY"}
 
@@ -33,7 +47,6 @@ def describir_imagen(ruta: str = "", pregunta: str | None = None) -> dict:
         from google import genai
         from google.genai import types
 
-        mime = "image/png" if path.suffix.lower() == ".png" else "image/jpeg"
         client = genai.Client(api_key=config.GOOGLE_API_KEY)
         out = client.models.generate_content(
             model=config.LLM_MODEL,

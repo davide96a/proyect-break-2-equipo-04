@@ -22,10 +22,28 @@ class _ClienteFalso:
         return type("Respuesta", (), {"text": self.texto})()
 
 
-def test_imagen_inexistente_devuelve_error(tmp_path):
-    r = describir_imagen(str(tmp_path / "no_existe.jpg"))
+def test_imagen_inexistente_devuelve_error():
+    r = describir_imagen("assets/no_existe.jpg")
     assert r["status"] == "error"
     assert "no hay imagen" in r["texto"]
+
+
+def test_ruta_fuera_de_assets_se_rechaza(monkeypatch):
+    monkeypatch.setattr(config, "GOOGLE_API_KEY", "clave-falsa")
+    cliente = _ClienteFalso(texto="no debería llamarse")
+    monkeypatch.setattr(genai, "Client", cliente)
+
+    for ruta in (".env", "assets/../.env", str(config.BASE_DIR / "config.py")):
+        r = describir_imagen(ruta)
+        assert r["status"] == "error"
+        assert "assets/" in r["texto"]
+    assert cliente.enviado is None  # nunca se envió nada a Gemini
+
+
+def test_extension_no_permitida_se_rechaza():
+    r = describir_imagen("assets/imagen.gif")
+    assert r["status"] == "error"
+    assert "extensión no permitida" in r["texto"]
 
 
 def test_sin_clave_devuelve_error(monkeypatch):
