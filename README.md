@@ -84,6 +84,30 @@ el índice del RAG ni red. Sin `GOOGLE_API_KEY`, el grafo funciona igual con los
 python -m pytest -q   # tests del grafo y de las tools: sin red ni clave
 ```
 
+## Agente en el navegador (Streamlit)
+
+```bash
+streamlit run app.py                   # abre http://localhost:8501
+USE_MOCKS=1 streamlit run app.py       # tools falsas: sin índice del RAG ni red
+```
+
+`app.py` es solo cliente de `src/agent.py` (mismas funciones que la CLI: `procesar_turno` y `aprobar_plan`):
+
+- **Chat:** cada mensaje es un turno del grafo en el mismo `thread_id` (se ve en la barra lateral).
+- **Barra lateral:** cuando hay un plan pendiente aparecen el plan y los botones **Aprobar** / **Rechazar**.
+- **Nueva conversación:** vacía el chat y empieza con un `thread_id` nuevo (sin memoria de la anterior).
+
+### Probar el human-in-the-loop en la web
+
+1. Pregunta, p. ej. «¿Cuánto cuesta la entrada a la piscina de verano para adultos?» → la respuesta sale con
+   **Plan (pendiente de aprobación)** y el chat se bloquea hasta que decidas.
+2. **Rechazar** → «Plan rechazado…», no se aplica nada y puedes seguir preguntando en la misma conversación.
+3. Otra pregunta → **Aprobar** → «✅ Plan aprobado y guardado en salidas/…» (`done=True`).
+
+```bash
+python -m pytest tests/test_app.py -v   # aprobar y rechazar desde la barra lateral (AppTest, sin red ni clave)
+```
+
 ## Tool multimodal (`describir_imagen`)
 
 Imagen → texto con Gemini (`src/tools/describir_imagen.py`). Envía los bytes de la imagen y un prompt
