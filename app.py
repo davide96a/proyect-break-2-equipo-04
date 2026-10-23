@@ -60,6 +60,11 @@ with st.sidebar:
             _decidir(False)
             st.rerun()
 
+    st.divider()
+    if st.button("Nueva conversación", use_container_width=True):
+        _reset()
+        st.rerun()
+
 st.title("Asistente de Deporte Municipal")
 st.caption("Supervisor + especialistas + tools (RAG, API, hora, imagen) · MemorySaver · HITL")
 
@@ -67,7 +72,12 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("Tu pregunta sobre deporte municipal..."):
+# Con un plan pendiente el agente no acepta mensajes nuevos: se bloquea el chat
+hitl_bloquea = bool(st.session_state.resultado.get("pendiente_hitl"))
+if hitl_bloquea:
+    st.warning("Plan pendiente de aprobación — usa los botones de la barra lateral.")
+
+if prompt := st.chat_input("Tu pregunta sobre deporte municipal...", disabled=hitl_bloquea):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
@@ -76,8 +86,12 @@ if prompt := st.chat_input("Tu pregunta sobre deporte municipal..."):
         with st.spinner("Consultando a los especialistas..."):
             resultado = procesar_turno(prompt, st.session_state.thread_id)
         st.session_state.resultado = resultado
-        texto = _texto_respuesta(resultado)
-        st.markdown(texto)
+        if resultado.get("error"):  # p. ej. límite de turnos: la respuesta guardada sería la del turno anterior
+            st.error(resultado["error"])
+            texto = f"⚠️ {resultado['error']}"
+        else:
+            texto = _texto_respuesta(resultado)
+            st.markdown(texto)
     st.session_state.messages.append({"role": "assistant", "content": texto})
 
     # La barra lateral ya se dibujó arriba: rerun para que aparezcan Aprobar / Rechazar
