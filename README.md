@@ -219,6 +219,15 @@ python -c "from src.tools.describir_imagen import describir_imagen; print(descri
 python -m pytest tests/test_describir_imagen.py -v   # sin red ni clave (Gemini simulado)
 ```
 
+## Tests
+
+```bash
+python -m pytest -q   # todos los tests: sin red, sin índice del RAG y sin clave de Gemini
+```
+
+GitHub Actions los ejecuta en cada PR y en cada push a `develop` y `main`
+([`.github/workflows/tests.yml`](.github/workflows/tests.yml)); el resultado aparece en la propia PR.
+
 ## Estructura
 
 ```
