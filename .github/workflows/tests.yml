@@ -1,0 +1,36 @@
+# Pasa todos los tests en cada PR (y en cada push) a develop y main.
+# Los tests no usan red ni clave de Gemini (tools falsas, LLM falso y monkeypatch), así que no hace falta ningún secreto.
+name: Tests
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+concurrency:  # si se sube otro commit a la misma PR, se cancela la ejecución anterior
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          # torch solo CPU: la versión por defecto en Linux trae CUDA (~2 GB) y los tests no la necesitan
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+
+      - name: Ejecutar los tests
+        run: python -m pytest -q
