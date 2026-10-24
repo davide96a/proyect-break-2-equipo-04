@@ -225,7 +225,7 @@ python -m pytest tests/test_describir_imagen.py -v   # sin red ni clave (Gemini 
 python -m pytest -q   # todos los tests: sin red, sin índice del RAG y sin clave de Gemini
 ```
 
-GitHub Actions los ejecuta en cada PR y en cada push a `develop` y `main`
+GitHub Actions los ejecuta en cada PR a `develop` y `main` y en cada push a cualquier rama
 ([`.github/workflows/tests.yml`](.github/workflows/tests.yml)); el resultado aparece en la propia PR.
 
 ## Estructura

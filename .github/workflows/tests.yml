@@ -1,4 +1,4 @@
-# Pasa todos los tests en cada PR (y en cada push) a develop y main.
+# Pasa todos los tests en cada PR a develop y main, y en cada push a cualquier rama.
 # Los tests no usan red ni clave de Gemini (tools falsas, LLM falso y monkeypatch), así que no hace falta ningún secreto.
 name: Tests
 
@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [develop, main]
   push:
-    branches: [develop, main]
+    branches: ["**"]
 
 concurrency:  # si se sube otro commit a la misma PR, se cancela la ejecución anterior
   group: tests-${{ github.ref }}
