@@ -5,6 +5,7 @@
 
 import streamlit as st
 
+from config import MAX_ITER, MAX_STEPS, MAX_TURNS
 from src.agent import aprobar_plan, nuevo_thread_id, procesar_turno
 
 st.set_page_config(page_title="Agente · Deporte municipal", page_icon="🏊", layout="centered")
@@ -45,6 +46,8 @@ if "messages" not in st.session_state:
 
 with st.sidebar:
     st.caption(f"thread_id: `{st.session_state.thread_id}`")
+    # Límites del agente: los decide Python (config.py), aquí solo se muestran
+    st.caption(f"Límites: `MAX_ITER={MAX_ITER}` · `MAX_STEPS={MAX_STEPS}` · `MAX_TURNS={MAX_TURNS}`")
 
     resultado = st.session_state.resultado
     if resultado.get("pendiente_hitl"):
