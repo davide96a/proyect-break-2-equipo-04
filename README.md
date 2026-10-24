@@ -94,8 +94,10 @@ USE_MOCKS=1 streamlit run app.py       # tools falsas: sin índice del RAG ni re
 `app.py` es solo cliente de `src/agent.py` (mismas funciones que la CLI: `procesar_turno` y `aprobar_plan`):
 
 - **Chat:** cada mensaje es un turno del grafo en el mismo `thread_id` (se ve en la barra lateral).
-- **Barra lateral:** cuando hay un plan pendiente aparecen el plan y los botones **Aprobar** / **Rechazar**.
+- **Barra lateral:** el `thread_id`, los límites del agente (`MAX_ITER`, `MAX_STEPS`, `MAX_TURNS`, solo informativos:
+  los aplica Python) y, cuando hay un plan pendiente, el plan y los botones **Aprobar** / **Rechazar**.
 - **Nueva conversación:** vacía el chat y empieza con un `thread_id` nuevo (sin memoria de la anterior).
+- **Estado / log / tools (debug):** expander al final de la página con lo que hizo el agente en el último turno.
 
 ### Probar el human-in-the-loop en la web
 
@@ -104,8 +106,17 @@ USE_MOCKS=1 streamlit run app.py       # tools falsas: sin índice del RAG ni re
 2. **Rechazar** → «Plan rechazado…», no se aplica nada y puedes seguir preguntando en la misma conversación.
 3. Otra pregunta → **Aprobar** → «✅ Plan aprobado y guardado en salidas/…» (`done=True`).
 
+### Panel de debug
+
+El expander **Estado / log / tools (debug)** muestra el último turno:
+
+- **Estado:** `thread_id`, `pendiente_hitl`, `done`, `error`, el plan y el `log` del grafo
+  (`supervisor → especialista_tarifas (llm, iter 1)`, `pausa HITL antes de aplicar`, `aplicar → aprobado`…).
+- **Traza de tools:** una tabla con una fila por llamada (`tool`, `status`, `preview`). El `status` dice si la tool
+  dio datos (`ok`), se abstuvo (`abstencion`), falló (`error`) o la bloqueó la allowlist (`blocked`).
+
 ```bash
-python -m pytest tests/test_app.py -v   # aprobar y rechazar desde la barra lateral (AppTest, sin red ni clave)
+python -m pytest tests/test_app.py -v   # HITL y panel de debug (AppTest, sin red ni clave)
 ```
 
 ## Tool multimodal (`describir_imagen`)
