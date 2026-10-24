@@ -5,6 +5,7 @@
 
 import streamlit as st
 
+from config import MAX_ITER, MAX_STEPS, MAX_TURNS
 from src.agent import aprobar_plan, nuevo_thread_id, procesar_turno
 
 st.set_page_config(page_title="Agente · Deporte municipal", page_icon="🏊", layout="centered")
@@ -45,6 +46,8 @@ if "messages" not in st.session_state:
 
 with st.sidebar:
     st.caption(f"thread_id: `{st.session_state.thread_id}`")
+    # Límites del agente: los decide Python (config.py), aquí solo se muestran
+    st.caption(f"Límites: `MAX_ITER={MAX_ITER}` · `MAX_STEPS={MAX_STEPS}` · `MAX_TURNS={MAX_TURNS}`")
 
     resultado = st.session_state.resultado
     if resultado.get("pendiente_hitl"):
@@ -97,3 +100,26 @@ if prompt := st.chat_input("Tu pregunta sobre deporte municipal...", disabled=hi
     # La barra lateral ya se dibujó arriba: rerun para que aparezcan Aprobar / Rechazar
     if resultado.get("pendiente_hitl"):
         st.rerun()
+
+with st.expander("Estado / log / tools (debug)"):
+    resultado = st.session_state.resultado
+    st.json(
+        {
+            "thread_id": st.session_state.thread_id,
+            "pendiente_hitl": resultado.get("pendiente_hitl"),
+            "done": resultado.get("done"),
+            "error": resultado.get("error"),
+            "plan": resultado.get("plan"),
+            "log": resultado.get("log"),
+        }
+    )
+    st.markdown("**Traza de tools**")
+    traza = resultado.get("traza_tools") or []
+    if traza:
+        st.dataframe(
+            [{"tool": t["tool"], "status": t["status"], "preview": t["preview"]} for t in traza],
+            hide_index=True,
+            width="stretch",
+        )
+    else:
+        st.caption("Sin llamadas a tools en este turno.")
