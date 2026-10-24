@@ -97,3 +97,26 @@ if prompt := st.chat_input("Tu pregunta sobre deporte municipal...", disabled=hi
     # La barra lateral ya se dibujó arriba: rerun para que aparezcan Aprobar / Rechazar
     if resultado.get("pendiente_hitl"):
         st.rerun()
+
+with st.expander("Estado / log / tools (debug)"):
+    resultado = st.session_state.resultado
+    st.json(
+        {
+            "thread_id": st.session_state.thread_id,
+            "pendiente_hitl": resultado.get("pendiente_hitl"),
+            "done": resultado.get("done"),
+            "error": resultado.get("error"),
+            "plan": resultado.get("plan"),
+            "log": resultado.get("log"),
+        }
+    )
+    st.markdown("**Traza de tools**")
+    traza = resultado.get("traza_tools") or []
+    if traza:
+        st.dataframe(
+            [{"tool": t["tool"], "status": t["status"], "preview": t["preview"]} for t in traza],
+            hide_index=True,
+            width="stretch",
+        )
+    else:
+        st.caption("Sin llamadas a tools en este turno.")
