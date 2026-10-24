@@ -154,10 +154,8 @@ describir_imagen()
 La descripción recoge correctamente el contenido de la infografía: los pasos, las dos opciones (Alta y
 Renovación) y la fecha de actualización.
 
-Cuando se le pasa una pregunta («¿Qué pasos hay que seguir para sacar el abono online?»), la respuesta enumera
-los cuatro pasos, pero **incluye el enlace `https://deportesweb.madrid.es`, que no aparece en la imagen** (en ella
-solo figura «DeportesWeb»). Es un dato que añade el modelo y no puede considerarse verificado; ocurre también con
-`temperature=0`.
+Cuando se le pasa una pregunta, la respuesta se centra en ella (por ejemplo, enumera los cuatro pasos), aunque
+puede añadir datos que no aparecen en la imagen (fallo 3).
 
 Dentro del agente, la pregunta «¿Qué se ve en la imagen?» se dirige a `especialista_instalaciones`, que llama a
 `describir_imagen` (`ok`), y `sintetizar` propone un plan de cuatro pasos basado en la infografía:
@@ -224,7 +222,14 @@ sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mis
 - *Qué haríamos:* un reintento con espera corta ante 503, solo en errores temporales (no en clave inválida),
   manteniendo `error` si vuelve a fallar.
 
-**Fallo 3 (Alex).** *Pendiente.*
+**Fallo 3 (Alex) · La descripción de la imagen incluye datos que no aparecen en ella.**
+- *Qué pasó:* al preguntar «¿Qué pasos hay que seguir para sacar el abono online?», `describir_imagen` enumeró
+  bien los cuatro pasos, pero añadió el enlace `https://deportesweb.madrid.es`, que no figura en la infografía
+  (solo pone «DeportesWeb»). Ocurrió en dos ejecuciones distintas, también con `temperature=0`.
+- *Causa:* la tool devuelve texto generado por el modelo a partir de la imagen, no un dato extraído y
+  verificado; el modelo completa con lo que «sabe» del tema.
+- *Qué haríamos:* indicar en el prompt que describa solo lo que se ve en la imagen y que no añada enlaces ni
+  datos externos, y comprobarlo con varias preguntas sobre la misma imagen.
 
 ## 6. Siguientes pasos (MLOps)
 
