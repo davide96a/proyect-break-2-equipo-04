@@ -167,7 +167,43 @@ Dentro del agente, la pregunta «¿Qué se ve en la imagen?» se dirige a `espec
 
 ### HITL en Streamlit
 
-*Pendiente.*
+En la interfaz web el HITL funciona igual que en la CLI (sección 2): el grafo se detiene antes de `aplicar` y la
+decisión la toma una persona. Cuando hay un plan pendiente (`pendiente_hitl=true`), la barra lateral muestra el
+plan con los botones **Aprobar** y **Rechazar**, y el chat se desactiva hasta que se decide. Cada botón llama a
+`aprobar_plan(thread_id, aprobado)`; la interfaz no contiene lógica del grafo.
+
+![Plan pendiente con los botones Aprobar y Rechazar](capturas/01_chat_hitl.png)
+
+**Ejecución real** (Streamlit con Gemini y el RAG, en la misma conversación, 24/10/2026):
+
+*Aprobación.* Pregunta: «¿Cuánto cuesta la entrada a la piscina de verano para adultos?»
+
+```
+respuesta: La entrada para adultos a la piscina de verano tiene un coste de 4,5 €
+           (Fuente: 300083-10-deportes-tarifas.xlsx).
+plan:      Consultar la tarifa oficial para adultos en el documento de deportes.
+→ Aprobar · aplicar → aprobado · pendiente_hitl=false · done=true
+→ «✅ Plan aprobado y guardado en salidas/plan_20261024_232712.md.»
+```
+
+![Tras aprobar: confirmación en el chat y done=true en el panel de debug](capturas/07_hitl_aprobado.png)
+
+*Rechazo.* Pregunta en la misma conversación: «¿Y cuánto cuesta para mayores de 65 años?»
+
+```
+respuesta: No dispongo de información en los documentos proporcionados sobre el precio de la entrada a la piscina
+           de verano para mayores de 65 años. Solo cuento con datos sobre descuentos para el servicio de barcas
+           de recreo (Fuente: 300083-10-deportes-tarifas.xlsx).
+plan:      Consultar la fuente 300083-10-deportes-tarifas.xlsx para verificar si existen tarifas específicas
+           para mayores de 65 años en otros servicios deportivos.
+→ Rechazar · aplicar → rechazado · pendiente_hitl=false · done=false
+→ «Plan rechazado. Dime qué quieres cambiar y lo preparo de nuevo.»
+```
+
+**Qué se observó.** La primera respuesta está respaldada por la fuente y su aprobación genera la ficha en `salidas/`.
+La segunda no contiene el dato pedido, pero se propone igualmente un plan: la abstención solo se detecta por la
+frase exacta y esta respuesta no la usa, así que `rag_ask` la marca como `ok`. El rechazo evita guardar un plan
+sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
 
 ## 5. Tres fallos observados
 
