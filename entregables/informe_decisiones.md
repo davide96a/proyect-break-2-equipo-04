@@ -247,3 +247,14 @@ sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mis
 - Mejorar el retrieval del RAG (en el PB1, 4/10 con k=3 y 5/10 con k=5) y medirlo antes y después con la
   evaluación de 13 preguntas: repetir el nombre del centro en cada fragmento, búsqueda híbrida y k mayor por defecto.
 - Umbral de similitud para abstenerse antes de llamar a Gemini: ahorra una llamada por consulta fuera de corpus.
+
+**Alex (interfaz y multimodal)**
+- Prompt de `describir_imagen` que limite la respuesta a lo que se ve en la imagen, sin enlaces ni datos externos,
+  y comprobarlo con varias preguntas sobre la misma imagen (fallo 3).
+- Empaquetar la app (Streamlit + agente + índice del RAG) para desplegarla, con la clave de Gemini como secreto
+  del entorno en lugar de un `.env`.
+- Pasar los tests en cada PR con GitHub Actions: los 48 actuales no necesitan red ni clave, incluidos los de la
+  interfaz con `AppTest`.
+- Registrar cada turno de la app (latencia, tools usadas con su `status` y errores de Gemini) para monitorizar el
+  uso real.
+- Medir el coste por turno (llamadas y tokens a Gemini).
