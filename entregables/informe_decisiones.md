@@ -122,6 +122,51 @@ la red y el RAG con `monkeypatch`.
 
 ## 4. Multimodal y HITL en Streamlit (Alex)
 
+### Tool multimodal
+
+El agente trabaja con texto. Para responder sobre una imagen dispone de la tool multimodal `describir_imagen`, que
+recibe una imagen y devuelve una descripción en texto que el resto del grafo puede usar. Se prueba con una imagen
+demo del dominio.
+
+**Imagen demo.** `assets/imagen_demo.jpg` es la primera página de la infografía «Cómo adquirir online un Abono
+Deporte Madrid» del Ayuntamiento (`rag/data/20250912_InfografíaCómoAdquirirOrenovarUnADM.pdf`, exportada a JPG). Se eligió porque pertenece al dominio, tiene texto legible y presenta la información de forma visual:
+cuatro pasos numerados sobre capturas de la web municipal. El RAG solo indexa el texto extraído del PDF, sin la
+disposición visual; la tool trabaja directamente sobre la imagen.
+
+**Integración en el agente.** La tool envía a Gemini la imagen y la pregunta del usuario en una sola llamada y
+devuelve una descripción en texto. La utiliza `especialista_instalaciones`, siempre con la imagen demo: el archivo
+lo determina Python, no el LLM. Además:
+
+- Solo lee imágenes de `assets/` (`.jpg`, `.jpeg`, `.png` o `.webp`), para que nunca se envíe otro archivo a Gemini.
+- Usa `temperature=0`, como el resto del proyecto, para que la descripción sea estable.
+
+**Resultado con la imagen demo** (Gemini, `gemini-3.1-flash-lite`):
+
+```
+describir_imagen()
+→ status ok · "Esta infografía explica los pasos para adquirir o renovar el "Abono Deporte Madrid" de forma online
+  a través del portal web del Ayuntamiento de Madrid. El documento detalla el proceso, que incluye iniciar sesión,
+  acceder a la sección "Mis gestiones" y elegir entre las opciones de "Alta" (para nuevos usuarios o cambios de
+  abono) o "Renovación" (para mantener el abono actual). La guía, actualizada al 12/09/2025, incluye capturas de
+  pantalla numeradas que ilustran la interfaz del sitio web para facilitar la navegación del usuario."
+```
+
+La descripción recoge correctamente el contenido de la infografía: los pasos, las dos opciones (Alta y
+Renovación) y la fecha de actualización.
+
+Cuando se le pasa una pregunta («¿Qué pasos hay que seguir para sacar el abono online?»), la respuesta enumera
+los cuatro pasos, pero **incluye el enlace `https://deportesweb.madrid.es`, que no aparece en la imagen** (en ella
+solo figura «DeportesWeb»). Es un dato que añade el modelo y no puede considerarse verificado; ocurre también con
+`temperature=0`.
+
+Dentro del agente, la pregunta «¿Qué se ve en la imagen?» se dirige a `especialista_instalaciones`, que llama a
+`describir_imagen` (`ok`), y `sintetizar` propone un plan de cuatro pasos basado en la infografía:
+
+![Respuesta del agente a partir de la imagen demo](capturas/03_multimodal.png)
+![Traza: especialista_instalaciones → describir_imagen ok](capturas/04_multimodal_debug.png)
+
+### HITL en Streamlit
+
 *Pendiente.*
 
 ## 5. Tres fallos observados
