@@ -5,7 +5,7 @@
 Agente multiagente con **LangGraph** que amplía el RAG del Project Break 1
 (instalaciones, tarifas y normas del deporte municipal de Madrid).
 
-Equipo 06 — María Muriel · Davide Campi · Alejandro Dietta
+Equipo 04 — María Muriel · Davide Campi · Alejandro Dietta
 
 ## Instalación
 
@@ -25,6 +25,90 @@ Construir el índice una vez (la primera vez descarga el modelo de embeddings, ~
 python -m rag --index
 python -m rag --ask "¿Cuánto cuesta el abono de piscina?"
 ```
+Resultado del indexado: **1714 chunks** en la colección `deporte_municipal` (~1 minuto, embeddings
+locales de 384 dimensiones). `rag/chroma/` y `rag/output/` no se suben a Git: hay que indexar en local.
+Si cambia el modelo de embeddings, el chunking o el corpus, hay que volver a indexar.
+
+
+
+## Tools y allowlist
+
+
+
+El agente tiene cuatro tools (`src/tools/`). Ninguna se ejecuta directamente: todas pasan por
+`ejecutar_tool`, la única puerta de ejecución.
+
+
+
+| Tool | Qué hace | La usa |
+|---|---|---|
+| `rag_ask` | Envuelve `rag.responder()` del PB1: tarifas, descuentos, instalaciones y normas | `especialista_tarifas` |
+| `api_deporte` | Agenda de actividades deportivas del Ayuntamiento (ver abajo) | `especialista_instalaciones` |
+| `hora_actual` | Día y hora actuales en Madrid (determinista, sin red) | ambos |
+| `describir_imagen` | Imagen → texto con Gemini (ver sección de la tool multimodal) | `especialista_instalaciones` |
+
+
+
+- Cada tool devuelve un dict `{"status", "texto", ...}`; el `texto` es lo que lee el LLM.
+  `status`: `ok` | `abstencion` | `error`.
+- `ejecutar_tool(nombre, args, permitidas=None)` devuelve la entrada de traza
+  `{tool, args, status, preview, resultado}` (`preview` ≤ 200 caracteres). Si el nombre no está en
+  `TOOLS_PERMITIDAS`, o no está en `permitidas` (las tools del especialista), **no se ejecuta nada** y el
+  status es `blocked`. Nunca lanza excepciones: un fallo de la tool queda como `error`.
+- `rag_ask` necesita el índice construido y `GOOGLE_API_KEY`. Si el RAG se abstiene devuelve `abstencion`
+  y sin fuentes. El RAG se importa de forma diferida: el modelo de embeddings solo se carga en la primera consulta.
+
+
+
+Probar las tools fuera del grafo:
+
+
+
+```bash
+python -m pytest -q    # tests de las tools: sin red ni clave
+python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('hora_actual'))"
+python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('rag_ask', {'consulta': 'cuanto cuesta la entrada a la piscina de verano para adultos'}))"
+python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('borrar_todo'))"   # status blocked
+```
+
+
+
+### API externa: `api_deporte`
+
+
+
+- **Fuente:** [Agenda de actividades deportivas](https://datos.madrid.es/dataset/212504-0-agenda-actividades-deportes)
+  del Ayuntamiento de Madrid (formato JSON-LD; las actividades están en `@graph`). Descargada el 20/10/2026.
+- **Qué hace:** pide la agenda con timeout de 12 s, descarta lo ya terminado, filtra por las palabras de la
+  consulta (y por «gratis») y devuelve un resumen corto (5 líneas por defecto, máximo 10) con lugar, días,
+  hora y precio. Nunca devuelve el JSON entero.
+- **Fallback:** si falla la red, la respuesta o el formato, lee `data/fallback_api.json` (copia del 20/10/2026)
+  y lo indica en el texto: `Fuente: api (datos.madrid.es)` o `Fuente: local (copia del 20/10/2026)`.
+- **Estados:** `ok`, `abstencion` (no hay actividades vigentes que encajen) y `error` (ni API ni respaldo).
+
+
+
+## Fuentes del corpus
+
+
+
+Descargadas de datos.madrid.es y madrid.es durante el PB1 y añadidas al repositorio del PB1 a partir del
+**13/09/2026**. Importadas a este
+repositorio el 15/10/2026. Datos públicos del Ayuntamiento de Madrid.
+
+
+
+| Fichero (`rag/data/`) | Fuente |
+|---|---|
+| `200186-0-polideportivos-csv.csv` | https://datos.madrid.es/dataset/200186-0-polideportivos |
+| `200215-0-instalaciones-deportivas-csv.csv` | https://datos.madrid.es/dataset/200215-0-instalaciones-deportivas |
+| `210227-0-piscinas-publicas-csv.csv` | https://datos.madrid.es/dataset/210227-0-piscinas-publicas |
+| `300083-10-deportes-tarifas.xlsx` | https://datos.madrid.es/dataset/300083-0-deportes-tarifas |
+| `300097-3-deportes-descuentos-csv.csv` | https://datos.madrid.es/dataset/300097-0-deportes-descuentos |
+| `PreciosPublicos2026.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Colecciones/ficheros/TarifasD/PreciosPublic… |
+| `Tarifas_deportivas.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Colecciones/ficheros/TarifasD/Tarifas_depor… |
+| `20250912_InfografíaCómoAdquirirOrenovarUnADM.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Faq/ficheros/infografias%20faq%202025/20250… |
+| `eli-es-md-01860896-reg-2012-10-15-(1)-dof-spa.pdf` | <https://sede.madrid.es/eli/es-md-01860896/reg/2012/10/15/(1)/dof/spa/pdf> |
 
 ## Agente por terminal (CLI)
 
