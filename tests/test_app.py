@@ -1,4 +1,4 @@
-"""Tests de la app Streamlit: HITL desde la barra lateral (Aprobar / Rechazar).
+"""Tests de la app Streamlit: HITL desde la barra lateral (Aprobar / Rechazar) y panel de debug.
 
 Sin red, sin índice y sin Gemini: tools falsas (src/mocks) y grafo sin LLM (fallback en Python).
 Usa AppTest de Streamlit, que ejecuta app.py sin abrir el navegador.
@@ -56,3 +56,15 @@ def test_rechazar_y_seguir_en_el_mismo_thread():
     _preguntar(at, "¿Y para jubilados?")
     assert at.session_state["thread_id"] == thread_id
     assert at.session_state["resultado"]["pendiente_hitl"]
+
+
+def test_debug_muestra_log_flags_y_traza_de_tools():
+    at = _preguntar(AppTest.from_file(APP).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
+
+    assert [e.label for e in at.expander] == ["Estado / log / tools (debug)"]
+    estado = at.json[0].value  # flags + log del último turno (texto JSON)
+    assert at.session_state["thread_id"] in estado and '"pendiente_hitl": true' in estado
+    assert "supervisor" in estado  # el log del grafo
+    traza = at.dataframe[0].value  # una fila por llamada a tool
+    assert list(traza.columns) == ["tool", "status", "preview"]
+    assert "rag_ask" in traza["tool"].tolist()
