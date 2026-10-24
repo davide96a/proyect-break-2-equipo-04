@@ -120,6 +120,13 @@ especialista (`hora_actual` con `permitidas=['rag_ask']`) devuelven `blocked` si
 Los tests de `ejecutar_tool`, `hora_actual`, `rag_ask` y `api_deporte` no necesitan red ni clave: simulan
 la red y el RAG con `monkeypatch`.
 
+**Limitaciones conocidas.**
+- `api_deporte` devuelve las actividades *vigentes*, pero no filtra por fecha concreta: preguntas como
+  "esta semana" u "hoy" devuelven toda la agenda en curso (algunas actividades duran de septiembre a junio).
+  Los días de recurrencia están en el dato, así que filtrar por día de la semana es viable.
+- `rag_ask` hereda del PB1 la detección de abstención por la frase exacta: si el modelo mezcla un dato útil
+  con "no tengo información…", la respuesta cuenta como `abstencion` (ver Fallo 1).
+
 ## 4. Multimodal y HITL en Streamlit (Alex)
 
 ### Tool multimodal
@@ -233,4 +240,10 @@ sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mis
 
 ## 6. Siguientes pasos (MLOps)
 
-*Pendiente (todos).*
+**María (tools y RAG)**
+- Reintento con espera corta ante los 503 de Gemini, solo en errores temporales (no en clave inválida).
+- Filtrar `api_deporte` por fecha y día de la semana, y mostrar los distritos con tilde (hoy sale "Chamartin").
+- Script que actualice la copia local de la API (`data/fallback_api.json`): envejece y el filtro de vigentes usa la fecha de hoy.
+- Mejorar el retrieval del RAG (en el PB1, 4/10 con k=3 y 5/10 con k=5) y medirlo antes y después con la
+  evaluación de 13 preguntas: repetir el nombre del centro en cada fragmento, búsqueda híbrida y k mayor por defecto.
+- Umbral de similitud para abstenerse antes de llamar a Gemini: ahorra una llamada por consulta fuera de corpus.
