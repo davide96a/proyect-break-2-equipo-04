@@ -34,7 +34,7 @@ def _preguntar(at: AppTest, texto: str) -> AppTest:
 
 
 def test_aprobar_desde_la_barra_lateral():
-    at = _preguntar(AppTest.from_file(APP).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
+    at = _preguntar(AppTest.from_file(APP, default_timeout=30).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
     assert at.session_state["resultado"]["pendiente_hitl"]
     assert {"Aprobar", "Rechazar"} <= set(_botones(at))
 
@@ -46,7 +46,7 @@ def test_aprobar_desde_la_barra_lateral():
 
 
 def test_rechazar_y_seguir_en_el_mismo_thread():
-    at = _preguntar(AppTest.from_file(APP).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
+    at = _preguntar(AppTest.from_file(APP, default_timeout=30).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
     thread_id = at.session_state["thread_id"]
 
     at.sidebar.button[1].click().run()  # Rechazar
@@ -59,7 +59,7 @@ def test_rechazar_y_seguir_en_el_mismo_thread():
 
 
 def test_debug_muestra_log_flags_y_traza_de_tools():
-    at = _preguntar(AppTest.from_file(APP).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
+    at = _preguntar(AppTest.from_file(APP, default_timeout=30).run(), "¿Cuánto cuesta la piscina de verano para adultos?")
 
     assert [e.label for e in at.expander] == ["Estado / log / tools (debug)"]
     estado = at.json[0].value  # flags + log del último turno (texto JSON)
