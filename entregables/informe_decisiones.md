@@ -260,12 +260,12 @@ ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
   preguntas de seguimiento no pierdan contexto.
 
 **Alex (interfaz y multimodal)**
+- *Hecho:* los tests se ejecutan con GitHub Actions en cada PR y en cada push (`.github/workflows/tests.yml`);
+  no necesitan red ni clave, incluidos los de la interfaz con `AppTest`.
 - Prompt de `describir_imagen` que limite la respuesta a lo que se ve en la imagen, sin enlaces ni datos externos,
   y comprobarlo con varias preguntas sobre la misma imagen (fallo 3).
 - Empaquetar la app (Streamlit + agente + índice del RAG) para desplegarla, con la clave de Gemini como secreto
   del entorno en lugar de un `.env`.
-- Pasar los tests en cada PR con GitHub Actions: los 48 actuales no necesitan red ni clave, incluidos los de la
-  interfaz con `AppTest`.
 - Registrar cada turno de la app (latencia, tools usadas con su `status` y errores de Gemini) para monitorizar el
   uso real.
 - Medir el coste por turno (llamadas y tokens a Gemini).
