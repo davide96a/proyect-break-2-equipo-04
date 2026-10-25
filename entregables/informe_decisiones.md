@@ -206,9 +206,11 @@ plan:      Consultar la fuente 300083-10-deportes-tarifas.xlsx para verificar si
 ```
 
 **Qué se observó.** La primera respuesta está respaldada por la fuente y su aprobación genera la ficha en `salidas/`.
-La segunda no contiene el dato pedido, pero se propone igualmente un plan: la abstención solo se detecta por la
-frase exacta y esta respuesta no la usa, así que `rag_ask` la marca como `ok`. El rechazo evita guardar un plan
-sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
+La segunda no recoge el dato pedido: el corpus sí tiene la tarifa de la categoría «Mayor» (1,35 €), pero la
+pregunta de seguimiento llegó al RAG sin el contexto de la piscina (ver Fallo 1) y la recuperación devolvió otros
+servicios (barcas de recreo). Aun así se propone un plan: la abstención solo se detecta por la frase exacta y esta
+respuesta no la usa, así que `rag_ask` la marca como `ok`. El rechazo evita guardar un plan sin respaldo, no crea
+ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
 
 ## 5. Tres fallos observados
 
