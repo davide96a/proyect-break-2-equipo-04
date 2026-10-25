@@ -1,0 +1,1646 @@
+{
+	"@context": {
+		"c": "http://www.w3.org/2002/12/cal#",
+		"dcterms": "http://purl.org/dc/terms/",
+		"geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+		"loc": "http://purl.org/ctic/infraestructuras/localizacion#",
+		"org": "http://purl.org/ctic/infraestructuras/organizacion#",
+		"vcard": "http://www.w3.org/2006/vcard/ns#",
+		"schema": "https://schema.org/",
+		"title": "vcard:fn",
+		"id": "dcterms:identifier",
+		"relation": "dcterms:relation",
+		"references": "dcterms:references",
+		"address": "vcard:adr",
+		"area": "loc:barrio",
+		"district": "loc:distrito",
+		"locality": "vcard:locality",
+		"postal-code": "vcard:postal-code",
+		"street-address": "vcard:street-address",
+		"location": "vcard:geo",
+		"latitude": "geo:lat",
+		"longitude": "geo:long",
+		"organization": "vcard:org",
+		"organization-desc": "dcterms:description",
+		"accesibility": "org:accesibilidad",
+		"services": "org:servicios",
+		"schedule": "org:horario",
+		"organization-name": "vcard:organization-name",
+		"description": "c:summary",
+		"link": "c:url",
+		"uid": "c:uid",
+		"dtstart": "c:dtstart",
+		"dtend": "c:dtend",
+		"time": "c:time",
+		"excluded-days": "c:exdate",
+		"event-location": "c:location",
+		"free": "schema:free",
+		"price": "c:resource",
+		"recurrence": "c:rrule",
+		"days": "c:byday",
+		"frequency": "c:freq",
+		"interval": "c:interval",
+		"audience": "dc:audience"
+	},
+	"@graph": [
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50410916-actividades-cuerpo-mente-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50410916",
+		"title": "Actividades Cuerpo y Mente - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 18:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "18:00",
+		"excluded-days": "28/12/2026;4/1/2027;",
+		"recurrence": {
+			"days": "MO",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50410916",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=d6400f99ad190a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica María de Villota",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f3bf0f99ad190a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/7891965-instalacion-deportiva-municipal-basica-maria-villota.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Butarque",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE ESTEFANITA 3"
+					}
+				},
+			"location": {
+				"latitude": 40.34750435286862,
+				"longitude": -3.6756560101604467
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica María de Villota",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50411175-actividades-cuerpo-mente-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50411175",
+		"title": "Actividades Cuerpo y Mente - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 18:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "18:00",
+		"excluded-days": "30/12/2026;6/1/2027;",
+		"recurrence": {
+			"days": "WE",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50411175",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=a1e10f99ad190a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque Ciudad de Los Ángeles",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f3bf0f99ad190a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4543802-instalacion-deportiva-municipal-basica-parque-ciudad-angeles.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Angeles",
+							"locality": "MADRID",		
+							"postal-code": "28041",
+							"street-address": "CALLE ANOETA 16"
+					}
+				},
+			"location": {
+				"latitude": 40.35282504994271,
+				"longitude": -3.6963617882465685
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque Ciudad de Los Ángeles",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50411433-actividades-cuerpo-mente-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50411433",
+		"title": "Actividades Cuerpo y Mente - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "26/12/2026;2/1/2027;",
+		"recurrence": {
+			"days": "SA",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50411433",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=43830f99ad190a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque Plata y Castañar",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f3bf0f99ad190a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4671014-instalacion-deportiva-municipal-basica-parque-plata-castanar.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanAndres",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "PASEO PLATA Y CASTAÑAR 5"
+					}
+				},
+			"location": {
+				"latitude": 40.34893806864997,
+				"longitude": -3.717423564562957
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque Plata y Castañar",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50266171-ajedrez-parques-jornadas-2026.json",
+		"id": "50266171",
+		"title": "Ajedrez en los parques: Jornadas 2026",
+		"description": "las jornadas están abiertas a todos los públicos, sin ningún tipo de restricciones, y son supervisadas por un monitor de ajedrez. La participación es gratuita, sin que sea necesario inscripción previa.",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-04-10 16:30:00.0",
+		"dtend": "2026-11-20 23:59:00.0",
+		"time": "16:30",
+		"excluded-days": "3/7/2026;10/7/2026;17/7/2026;24/7/2026;31/7/2026;7/8/2026;14/8/2026;21/8/2026;28/8/2026;",
+		"recurrence": {
+			"days": "FR",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50266171",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=3047e1509792d910VgnVCM100000891ecb1aRCRD",
+		"event-location": "Jardines de Pablo Sorozábal",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f6b1e1c2ca0c7910VgnVCM1000001d4a900aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/10090688-jardines-pablo-sorozabal.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin/Barrio/ElViso",
+							"locality": "MADRID",		
+							"postal-code": "28002",
+							"street-address": "CALLE PRINCIPE DE VERGARA 139"
+					}
+				},
+			"location": {
+				"latitude": 40.444631112841606,
+				"longitude": -3.6786214824583503
+			},		 
+			"organization": {
+			"organization-name": "Jardines de Pablo Sorozábal",
+			"accesibility": "2"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50266634-ajedrez-parques-jornadas-2026.json",
+		"id": "50266634",
+		"title": "Ajedrez en los parques: Jornadas 2026",
+		"description": "Las jornadas están abiertas a todos los públicos, sin ningún tipo de restricciones, y son supervisadas por un monitor de ajedrez. La participación es gratuita, sin que sea necesario inscripción previa.",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-04-11 11:30:00.0",
+		"dtend": "2026-11-21 23:59:00.0",
+		"time": "11:30",
+		"excluded-days": "4/7/2026;11/7/2026;18/7/2026;25/7/2026;1/8/2026;8/8/2026;15/8/2026;22/8/2026;29/8/2026;",
+		"recurrence": {
+			"days": "SA",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50266634",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9aa59e76dd92d910VgnVCM100000891ecb1aRCRD",
+		"event-location": "Jardines de Gloria Fuertes",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f6b1e1c2ca0c7910VgnVCM1000001d4a900aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/10984428-jardines-gloria-fuertes.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin/Barrio/NuevaEspana",
+							"locality": "MADRID",		
+							"postal-code": "28016",
+							"street-address": "CALLE MADRE DE DIOS 2"
+					}
+				},
+			"location": {
+				"latitude": 40.461517637696026,
+				"longitude": -3.6751179007317614
+			},		 
+			"organization": {
+			"organization-name": "Jardines de Gloria Fuertes",
+			"accesibility": "2"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50389309-campeonato-mundo-fim-x-trial-madrid-2026.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/Ciclismo",
+		"id": "50389309",
+		"title": "Campeonato del Mundo FIM. X-Trial Madrid 2026",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-11-28 18:00:00.0",
+		"dtend": "2026-11-28 23:59:00.0",
+		"time": "18:00",
+		"excluded-days": "",
+		"uid": "50389309",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=bf0aa7f03d240a10VgnVCM200000f921e388RCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9fb6ea75aa240a10VgnVCM200000f921e388RCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50429528-carrera-derbi-aficiones-2026.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/CarrerasMaratones",
+		"id": "50429528",
+		"title": "Carrera Derbi de las Aficiones 2026",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-10-25 09:00:00.0",
+		"dtend": "2026-10-25 23:59:00.0",
+		"time": "09:00",
+		"excluded-days": "",
+			"audience": "PoblaciónGeneral",
+		"uid": "50429528",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=73813b23f98c0a10VgnVCM200000f921e388RCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=fc1e3b23f98c0a10VgnVCM200000f921e388RCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50367424-ciclismo-madrid-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/Ciclismo",
+		"id": "50367424",
+		"title": "Ciclismo por Madrid 2026-2027",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-01 00:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50367424",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7869c3dea898f910VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=eacb55de4788f910VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50447663-clausura-entrega-premios.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50447663",
+		"title": "Clausura y entrega de premios",
+		"description": "Cerraremos Reinas del Tablero con la ceremonia de clausura y premiación del torneo.    Se entregarán 15 trofeos y 23 premios a las primeras clasificadas de las diferentes categorías, además de medallas de participación para todas las jugadoras inscritas.   Será el momento de reconocer no solo los resultados deportivos, sino también el esfuerzo, la ilusión y la participación de todas las niñas y jóvenes que habrán formado parte de estas dos jornadas.",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-11-15 13:30:00.0",
+		"dtend": "2026-11-15 23:59:00.0",
+		"time": "13:30",
+		"excluded-days": "",
+			"audience": "Mujeres,PoblaciónGeneral",
+		"uid": "50447663",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=012d97aa2a021a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9747ace988021a10VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50367469-correr-madrid-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/CarrerasMaratones",
+		"id": "50367469",
+		"title": "Correr por Madrid 2026-2027",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-01 00:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50367469",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=acd5c3dea898f910VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=d82e55de4788f910VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50383839-cursos-gratuitos-golf-tenis-padel-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/Golf",
+		"id": "50383839",
+		"title": "Cursos gratuitos de golf, tenis y pádel 2026-2027",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-10-01 00:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+			"audience": "Niños",
+		"uid": "50383839",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=378ee0a8b0320a10VgnVCM200000f921e388RCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7b4399a05cf10a10VgnVCM200000f921e388RCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50412474-deportes-urbanos-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/Skateboarding",
+		"id": "50412474",
+		"title": "Deportes Urbanos - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 17:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "17:00",
+		"excluded-days": "24/12/2026;31/12/2026;",
+		"recurrence": {
+			"days": "TH",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+			"audience": "Jovenes",
+		"uid": "50412474",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=5df03e4ca0290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica San Cristóbal de Los Ángeles II",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9fee3e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/5694370-instalacion-deportiva-municipal-basica-san-cristobal-angeles-ii.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanCristobal",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE GODELLA 48"
+					}
+				},
+			"location": {
+				"latitude": 40.343480612836665,
+				"longitude": -3.6889961753443936
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica San Cristóbal de Los Ángeles II",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50412215-deportes-urbanos-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/Skateboarding",
+		"id": "50412215",
+		"title": "Deportes Urbanos - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 17:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "17:00",
+		"excluded-days": "29/12/2026;5/1/2027;",
+		"recurrence": {
+			"days": "TU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+			"audience": "Jovenes",
+		"uid": "50412215",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=4d5f3e4ca0290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica San Cristóbal de Los Ángeles II",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9fee3e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/5694370-instalacion-deportiva-municipal-basica-san-cristobal-angeles-ii.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanCristobal",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE GODELLA 48"
+					}
+				},
+			"location": {
+				"latitude": 40.343480612836665,
+				"longitude": -3.6889961753443936
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica San Cristóbal de Los Ángeles II",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50412997-dinamizacion-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50412997",
+		"title": "Dinamización - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "26/12/2026;2/1/2027;",
+		"recurrence": {
+			"days": "SA",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50412997",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=dc973e4ca0290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Colonia Marconi",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e3353e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4543975-instalacion-deportiva-municipal-basica-colonia-marconi.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanAndres",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE PRINCIPAL 1"
+					}
+				},
+			"location": {
+				"latitude": 40.33378974534553,
+				"longitude": -3.698026716448742
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Colonia Marconi",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50413517-dinamizacion-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50413517",
+		"title": "Dinamización - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 17:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "17:00",
+		"excluded-days": "26/12/2026;2/1/2027;",
+		"recurrence": {
+			"days": "SA",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50413517",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=d9dcc7d8a5290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque Plata y Castañar",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e3353e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4671014-instalacion-deportiva-municipal-basica-parque-plata-castanar.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanAndres",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "PASEO PLATA Y CASTAÑAR 5"
+					}
+				},
+			"location": {
+				"latitude": 40.34893806864997,
+				"longitude": -3.717423564562957
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque Plata y Castañar",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50413257-dinamizacion-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50413257",
+		"title": "Dinamización - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 17:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "17:00",
+		"excluded-days": "26/12/2026;2/1/2027;",
+		"recurrence": {
+			"days": "SA",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50413257",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c1e9c7d8a5290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Colonia San Cristóbal de Los Ángeles",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e3353e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4542504-instalacion-deportiva-municipal-basica-colonia-san-cristobal-angeles.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanCristobal",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE ROCAFORT 2"
+					}
+				},
+			"location": {
+				"latitude": 40.341265820973355,
+				"longitude": -3.690416646053115
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Colonia San Cristóbal de Los Ángeles",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50413777-dinamizacion-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50413777",
+		"title": "Dinamización - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "6/12/2026;27/12/2026;3/1/2027;",
+		"recurrence": {
+			"days": "SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50413777",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=8570c7d8a5290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque Ciudad de Los Ángeles",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e3353e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4543802-instalacion-deportiva-municipal-basica-parque-ciudad-angeles.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Angeles",
+							"locality": "MADRID",		
+							"postal-code": "28041",
+							"street-address": "CALLE ANOETA 16"
+					}
+				},
+			"location": {
+				"latitude": 40.35282504994271,
+				"longitude": -3.6963617882465685
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque Ciudad de Los Ángeles",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50412737-dinamizacion-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50412737",
+		"title": "Dinamización - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "26/12/2026;2/1/2027;",
+		"recurrence": {
+			"days": "SA",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50412737",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=11f53e4ca0290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica El Cruce",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e3353e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4541995-instalacion-deportiva-municipal-basica-cruce.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Angeles",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE SANTIAGO AMON 6"
+					}
+				},
+			"location": {
+				"latitude": 40.3494383600748,
+				"longitude": -3.6936884772026106
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica El Cruce",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50414038-dinamizacion-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50414038",
+		"title": "Dinamización - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "6/12/2026;27/12/2026;3/1/2027;",
+		"recurrence": {
+			"days": "SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50414038",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=91d4c7d8a5290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque San Luciano",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e3353e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4543839-instalacion-deportiva-municipal-basica-parque-san-luciano.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Angeles",
+							"locality": "MADRID",		
+							"postal-code": "28041",
+							"street-address": "CALLE LILLO 3"
+					}
+				},
+			"location": {
+				"latitude": 40.363112656296984,
+				"longitude": -3.694806526993685
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque San Luciano",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50447643-encuentro-gran-maestra-ana-matnadze.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50447643",
+		"title": "Encuentro con la Gran Maestra Ana Matnadze",
+		"description": "Comenzaremos la jornada con un encuentro muy especial con Ana Matnadze, Gran Maestra Femenina, campeona mundial y europea en categorías juveniles y una de las ajedrecistas más destacadas que han representado a España en competiciones internacionales.   Ana compartirá con las participantes y sus familias algunas de sus experiencias dentro y fuera del tablero: cómo fueron sus primeros pasos en el ajedrez, qué ha aprendido a lo largo de su carrera y qué consejos daría a las niñas y jóvenes que quieren seguir mejorando.   Será además un encuentro abierto y cercano, en el que las participantes podrán hacerle preguntas, conocer de primera mano la experiencia de una jugadora de alto nivel y descubrir hasta dónde puede llevarlas su pasión por el ajedrez.",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-11-14 11:00:00.0",
+		"dtend": "2026-11-14 23:59:00.0",
+		"time": "11:00",
+		"excluded-days": "",
+			"audience": "Mujeres,Niños",
+		"uid": "50447643",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=30a997aa2a021a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9747ace988021a10VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50410654-escuela-escalada-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50410654",
+		"title": "Escuela de Escalada - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "6/12/2026;27/12/2026;3/1/2027;",
+		"recurrence": {
+			"days": "SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+			"audience": "Jovenes,Niños",
+		"uid": "50410654",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=20ea0f99ad190a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Pump Track de Butarque",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=4722273cca090a10VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/50267691-instalacion-deportiva-municipal-basica-pump-track-butarque.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Butarque",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "AVENIDA LOS ROSALES 137"
+					}
+				},
+			"location": {
+				"latitude": 40.34852825960244,
+				"longitude": -3.674819952829727
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Pump Track de Butarque",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50410432-escuela-escalada-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50410432",
+		"title": "Escuela de Escalada - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "6/12/2026;26/12/2026;27/12/2026;2/1/2027;3/1/2027;",
+		"recurrence": {
+			"days": "SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+			"audience": "Jovenes,Niños",
+		"uid": "50410432",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c9c7ce4729090a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Pump Track de Butarque",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=4722273cca090a10VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/50267691-instalacion-deportiva-municipal-basica-pump-track-butarque.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Butarque",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "AVENIDA LOS ROSALES 137"
+					}
+				},
+			"location": {
+				"latitude": 40.34852825960244,
+				"longitude": -3.674819952829727
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Pump Track de Butarque",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50427705-exhibicion-juegos-pelota-vasca-fronton-betijai-2026.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50427705",
+		"title": "Exhibición de Juegos de Pelota Vasca en el Frontón Betijai 2026",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-10-24 10:30:00.0",
+		"dtend": "2026-10-25 23:59:00.0",
+		"time": "10:30",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50427705",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=12c8fe6e704c0a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Frontón Beti Jai",
+		"references": {
+			"@id": ""
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/12324237-fronton-beti-jai.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamberi"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamberi/Barrio/Almagro",
+							"locality": "MADRID",		
+							"postal-code": "28010",
+							"street-address": "CALLE MARQUES DEL RISCAL 7"
+					}
+				},
+			"location": {
+				"latitude": 40.4306688171435,
+				"longitude": -3.6911570649287717
+			},		 
+			"organization": {
+			"organization-name": "Frontón Beti Jai",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50453954-fiesta-otono-gran-fiesta-deporte-adaptado-.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50453954",
+		"title": "Fiesta de Otoño. La Gran Fiesta del Deporte Adaptado.",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-10-24 10:00:00.0",
+		"dtend": "2026-10-24 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "",
+		"uid": "50453954",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=a3d571960d451a10VgnVCM200000f921e388RCRD",
+		"event-location": "Centro Deportivo Municipal Luis Aragonés",
+		"references": {
+			"@id": ""
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4681-centro-deportivo-municipal-luis-aragones.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Hortaleza"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Hortaleza/Barrio/Canillas",
+							"locality": "MADRID",		
+							"postal-code": "28043",
+							"street-address": "CALLE EL PROVENCIO 20"
+					}
+				},
+			"location": {
+				"latitude": 40.464650948053816,
+				"longitude": -3.6275877145025817
+			},		 
+			"organization": {
+			"organization-name": "Centro Deportivo Municipal Luis Aragonés",
+			"accesibility": "1,5,6"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50390712-futbol-americano-nfl-cincinnati-bengals-atlanta-falcons.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50390712",
+		"title": "Fútbol Americano NFL: Cincinnati Bengals - Atlanta Falcons",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-11-08 00:00:00.0",
+		"dtend": "2026-11-08 00:00:00.0",
+		"time": "00:00",
+		"excluded-days": "",
+			"audience": "PoblaciónGeneral",
+		"uid": "50390712",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=d1e57937d0840a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Estadio Santiago Bernabéu",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=cb117937d0840a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4657-estadio-santiago-bernabeu.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin/Barrio/Hispanoamerica",
+							"locality": "MADRID",		
+							"postal-code": "28036",
+							"street-address": "AVENIDA CONCHA ESPINA 1"
+					}
+				},
+			"location": {
+				"latitude": 40.45214975229475,
+				"longitude": -3.688509249453467
+			},		 
+			"organization": {
+			"organization-name": "Estadio Santiago Bernabéu",
+			"accesibility": "3"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50434344-gymcana-deportiva-halloween.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50434344",
+		"title": "Gymcana Deportiva Halloween",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-10-31 10:00:00.0",
+		"dtend": "2026-10-31 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "",
+			"audience": "Niños",
+		"uid": "50434344",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=1f4b4327708e0a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=a6e640777b7e0a10VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50445197-iv-dcolimpiadas.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50445197",
+		"title": "IV DCOlimpiadas",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-10-23 09:30:00.0",
+		"dtend": "2026-10-23 23:59:00.0",
+		"time": "09:30",
+		"excluded-days": "",
+			"audience": "PoblaciónGeneral",
+		"uid": "50445197",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=38494bc9e8611a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Madrid Caja Mágica",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c776965435611a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/5273495-madrid-caja-magica.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Usera"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Usera/Barrio/SanFermin",
+							"locality": "MADRID",		
+							"postal-code": "28041",
+							"street-address": "CAMINO PERALES 23"
+					}
+				},
+			"location": {
+				"latitude": 40.3690829380518,
+				"longitude": -3.6852444414433685
+			},		 
+			"organization": {
+			"organization-name": "Madrid Caja Mágica",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50367476-marcha-nordica-madrid-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50367476",
+		"title": "Marcha nórdica por Madrid 2026-2027",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-01 00:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50367476",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=326ab73df998f910VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=460c3e2ef148f910VgnVCM200000f921e388RCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50449874-masterclass-zumba-halloween-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50449874",
+		"title": "Masterclass Zumba Halloween - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-10-31 18:30:00.0",
+		"dtend": "2026-10-31 23:59:00.0",
+		"time": "18:30",
+		"excluded-days": "",
+			"audience": "Jovenes,Mujeres,Niños,Familias",
+		"uid": "50449874",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e5fa407a00a31a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Los Rosales I",
+		"references": {
+			"@id": ""
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4542914-instalacion-deportiva-municipal-basica-rosales-i.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Butarque",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "AVENIDA LOS ROSALES 133"
+					}
+				},
+			"location": {
+				"latitude": 40.3507522003116,
+				"longitude": -3.677296127414198
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Los Rosales I",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50367539-parkour-madrid-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50367539",
+		"title": "Parkour por Madrid 2026-2027",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-01 00:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50367539",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=863cb73df998f910VgnVCM100000891ecb1aRCRD",
+		"event-location": "Centro Deportivo Municipal Plata y Castañar",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=decd3e2ef148f910VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4719-centro-deportivo-municipal-plata-castanar.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanAndres",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "PASEO PLATA Y CASTAÑAR 7"
+					}
+				},
+			"location": {
+				"latitude": 40.34998997348078,
+				"longitude": -3.7178413073202856
+			},		 
+			"organization": {
+			"organization-name": "Centro Deportivo Municipal Plata y Castañar",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50411695-parque-salud-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50411695",
+		"title": "Parque y Salud - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:30:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:30",
+		"excluded-days": "30/12/2026;6/1/2027;",
+		"recurrence": {
+			"days": "WE",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50411695",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=97993e4ca0290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Centro Municipal de Mayores Villalonso",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e0193e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/11726-centro-municipal-mayores-villalonso.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/VillaverdeAltoCH",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "CALLE VILLALONSO 12"
+					}
+				},
+			"location": {
+				"latitude": 40.34958362533649,
+				"longitude": -3.709073393125563
+			},		 
+			"organization": {
+			"organization-name": "Centro Municipal de Mayores Villalonso",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50411953-parque-salud-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50411953",
+		"title": "Parque y Salud - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 17:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "17:00",
+		"excluded-days": "24/12/2026;31/12/2026;",
+		"recurrence": {
+			"days": "TH",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50411953",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=323b3e4ca0290a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Centro Municipal de Mayores Miguel Delibes",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e0193e4ca0290a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/143677-centro-municipal-mayores-miguel-delibes.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/LosRosales",
+							"locality": "MADRID",		
+							"postal-code": "28041",
+							"street-address": "AVENIDA FELICIDAD 26"
+					}
+				},
+			"location": {
+				"latitude": 40.35881548932917,
+				"longitude": -3.688387122923563
+			},		 
+			"organization": {
+			"organization-name": "Centro Municipal de Mayores Miguel Delibes",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50367576-piraguismo-madrid-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50367576",
+		"title": "Piragüismo por Madrid 2026-2027",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-01 00:00:00.0",
+		"dtend": "2027-07-31 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50367576",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=14e7b73df998f910VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque Juan Carlos I - Embarcadero",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=8bf7a8b0a548f910VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/50220526-instalacion-deportiva-municipal-basica-parque-juan-carlos-i-embarcadero.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Distrito"
+					}
+				},
+			"location": {
+				"latitude": 40.45775909680347,
+				"longitude": -3.6080324477635606
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque Juan Carlos I - Embarcadero",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50357147-pon-punto-tu-bici-taller-mecanica-basica.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/CursosTalleres",
+		"id": "50357147",
+		"title": "Pon a punto tu bici. Taller de mecánica básica",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-11-28 11:00:00.0",
+		"dtend": "2026-11-28 23:59:00.0",
+		"time": "11:00",
+		"excluded-days": "",
+		"uid": "50357147",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f4f1b693ee54f910VgnVCM200000f921e388RCRD",
+		"event-location": "Centro de Información y Educación Ambiental de Dehesa de la Villa",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7d64d981f4ab5810VgnVCM1000001d4a900aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/190493-centro-informacion-educacion-ambiental-dehesa-villa.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca"
+					}
+				},
+			"location": {
+				"latitude": 40.45914104116349,
+				"longitude": -3.718270563679269
+			},		 
+			"organization": {
+			"organization-name": "Centro de Información y Educación Ambiental de Dehesa de la Villa",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50447666-rincon-creativo.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50447666",
+		"title": "Rincón creativo",
+		"description": "De forma paralela al torneo tendremos un espacio dedicado a unir ajedrez, imaginación y creatividad.    En el Rincón creativo, las participantes podrán dibujar, colorear y realizar diferentes manualidades relacionadas con el mundo del ajedrez. Una actividad abierta y distendida para disfrutar del evento también fuera del tablero.",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-11-15 10:00:00.0",
+		"dtend": "2026-11-15 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "",
+			"audience": "Mujeres,PoblaciónGeneral",
+		"uid": "50447666",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=8cae97aa2a021a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9747ace988021a10VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50437380-sala-armas-esgrima.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50437380",
+		"title": "Sala de Armas – Esgrima",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-28 17:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "17:00",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+			"audience": "PoblaciónGeneral",
+		"uid": "50437380",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=eb8ca108091f0a10VgnVCM200000f921e388RCRD",
+		"event-location": "Centro Deportivo Municipal Estadio de Atletismo Vallehermoso (Dirección General de Deporte)",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=1b6259c9081f0a10VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/10663007-centro-deportivo-municipal-estadio-atletismo-vallehermoso-direccion-general-deporte-.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamberi"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamberi/Barrio/Vallehermoso",
+							"locality": "Madrid",		
+							"postal-code": "28003",
+							"street-address": "CALLE MELQUIADES ALVAREZ 10"
+					}
+				},
+			"location": {
+				"latitude": 40.441913031255396,
+				"longitude": -3.710700237505622
+			},		 
+			"organization": {
+			"organization-name": "Centro Deportivo Municipal Estadio de Atletismo Vallehermoso (Dirección General de Deporte)",
+			"accesibility": "0,5,6"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50447644-talleres-ajedrez-niveles.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50447644",
+		"title": "Talleres de ajedrez por niveles",
+		"description": "Después del encuentro con Ana, celebraremos tres talleres simultáneos de ajedrez, especialmente diseñados para que cada participante pueda aprender y disfrutar de acuerdo con su nivel de juego.   Durante una hora, las jugadoras trabajarán de forma práctica posiciones, ideas, estrategias y recursos tácticos adaptados a su experiencia. No se trata únicamente de aprender nuevas jugadas, sino de comprender mejor el juego, tomar decisiones y descubrir nuevas formas de pensar sobre el tablero.   Los talleres estarán dirigidos por tres maestras y entrenadoras con amplia experiencia en el ajedrez:    Nivel principiantes · Niala Collazo Nivel intermedio · Lulu Zhou Nivel avanzado · Ana Matnadze     Al finalizar los talleres celebraremos una pequeña ceremonia de reconocimiento, en la que todas las participantes recibirán su diploma y regalos como recuerdo de su participación en Reinas del Tablero.",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-11-14 12:30:00.0",
+		"dtend": "2026-11-14 23:59:00.0",
+		"time": "12:30",
+		"excluded-days": "",
+		"uid": "50447644",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7b7b97aa2a021a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9747ace988021a10VgnVCM100000891ecb1aRCRD"
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50437918-torneo-padel-san-blas-canillejas-2026.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50437918",
+		"title": "Torneo de Pádel San Blas-Canillejas 2026",
+		"description": "Desde el Distrito San Blas–Canillejas, se realizan​ eventos deportivos que tienen como objetivos combatir el sedentarismo, fomentar la actividad física y promover hábitos de vida saludables.  Lugar: Centro Deportivo Municipal San Blas, Avda.Hellín, 47, CP 28037. Madrid.   Categorías por parejas femenina y masculina para mayores de 16 años. Información   Apertura de inscripciones será el próximo 5 de octubre a las 10:00 horas a través de la web.",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-10-25 09:00:00.0",
+		"dtend": "2026-10-25 23:59:00.0",
+		"time": "09:00",
+		"excluded-days": "",
+		"uid": "50437918",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=ec9a3903402f0a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Centro Deportivo Municipal San Blas",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=fe91674f2f1f0a10VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4689-centro-deportivo-municipal-san-blas.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/SanBlas-Canillejas"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/SanBlas-Canillejas/Barrio/Hellin",
+							"locality": "MADRID",		
+							"postal-code": "28037",
+							"street-address": "AVENIDA HELLIN 47"
+					}
+				},
+			"location": {
+				"latitude": 40.428933838154435,
+				"longitude": -3.615229739080561
+			},		 
+			"organization": {
+			"organization-name": "Centro Deportivo Municipal San Blas",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50447647-torneo-reinas-tablero.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50447647",
+		"title": "Torneo Reinas del Tablero",
+		"description": "El domingo estará dedicado a poner en práctica todo lo aprendido con el Torneo Reinas del Tablero, una competición pensada para que jugadoras de diferentes edades y niveles puedan disfrutar del ajedrez en un ambiente deportivo, cercano y festivo.    Habrá premios y trofeos distribuidos en cinco categorías, además de medalla de participación para todas las jugadoras inscritas.    Puedes consultar todos los detalles, sistema de competición y categorías en las bases del Torneo Reinas del Tablero:     https://ajedrezcapablanca.es/files/Torneo2026.pdf",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-11-15 10:00:00.0",
+		"dtend": "2026-11-15 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "",
+			"audience": "Mujeres,PoblaciónGeneral",
+		"uid": "50447647",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9c7b97aa2a021a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "",
+		"references": {
+			"@id": ""
+		}				
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50367593-triatlon-madrid-2026-2027.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas/Ciclismo",
+		"id": "50367593",
+		"title": "Triatlón por Madrid 2026-2027",
+		"description": "",
+		"free": 0,		
+		"price": "",
+		"dtstart": "2026-09-01 00:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "",
+		"excluded-days": "",
+		"recurrence": {
+			"days": "MO,TU,WE,TH,FR,SA,SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50367593",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=ff6e0c291b98f910VgnVCM100000891ecb1aRCRD",
+		"event-location": "Centro Deportivo Municipal Barajas",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=d7947f2c4098f910VgnVCM100000891ecb1aRCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/99578-centro-deportivo-municipal-barajas.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Barajas"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Barajas/Barrio/AlamedaOsuna",
+							"locality": "MADRID",		
+							"postal-code": "28042",
+							"street-address": "AVENIDA LOGROÑO 70"
+					}
+				},
+			"location": {
+				"latitude": 40.46301382809657,
+				"longitude": -3.587693324074623
+			},		 
+			"organization": {
+			"organization-name": "Centro Deportivo Municipal Barajas",
+			"accesibility": "1"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50410172-zumba-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50410172",
+		"title": "Zumba - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 10:00:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "10:00",
+		"excluded-days": "27/12/2026;3/1/2027;",
+		"recurrence": {
+			"days": "SU",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50410172",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=4a14ce4729090a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Parque Plata y Castañar",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=5604273cca090a10VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4671014-instalacion-deportiva-municipal-basica-parque-plata-castanar.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/SanAndres",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "PASEO PLATA Y CASTAÑAR 5"
+					}
+				},
+			"location": {
+				"latitude": 40.34893806864997,
+				"longitude": -3.717423564562957
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Parque Plata y Castañar",
+			"accesibility": "0"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/evento/50409912-zumba-deporte-calle-distrito-villaverde.json",
+		"@type": "https://datos.madrid.es/egob/kos/actividades/ActividadesDeportivas",
+		"id": "50409912",
+		"title": "Zumba - Deporte en la Calle - Distrito de Villaverde",
+		"description": "",
+		"free": 1,		
+		"price": "",
+		"dtstart": "2026-09-07 19:30:00.0",
+		"dtend": "2027-06-30 23:59:00.0",
+		"time": "19:30",
+		"excluded-days": "25/12/2026;1/1/2027;",
+		"recurrence": {
+			"days": "FR",
+			"frequency": "WEEKLY",
+			"interval": 1
+		},
+		"uid": "50409912",
+		"link": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f382ce4729090a10VgnVCM100000891ecb1aRCRD",
+		"event-location": "Instalación Deportiva Municipal Básica Los Rosales I",
+		"references": {
+			"@id": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=5604273cca090a10VgnVCM200000f921e388RCRD"
+		},
+			"relation": {
+				"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/4542914-instalacion-deportiva-municipal-basica-rosales-i.json"
+			},
+				"address": {
+					"district": {
+						"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde"
+					},
+						"area": {
+							"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Villaverde/Barrio/Butarque",
+							"locality": "MADRID",		
+							"postal-code": "28021",
+							"street-address": "AVENIDA LOS ROSALES 133"
+					}
+				},
+			"location": {
+				"latitude": 40.3507522003116,
+				"longitude": -3.677296127414198
+			},		 
+			"organization": {
+			"organization-name": "Instalación Deportiva Municipal Básica Los Rosales I",
+			"accesibility": "0"
+		}
+	}	  
+  ]
+}
