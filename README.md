@@ -1,14 +1,18 @@
 # Agente Deporte municipal de Madrid — Project Break 2
 
-
 Agente multiagente con **LangGraph** que amplía el RAG del Project Break 1
 (instalaciones, tarifas y normas del deporte municipal de Madrid).
 
 Equipo 04 — María Muriel · Davide Campi · Alejandro Dietta
 
+Proyecto de uso educativo (bootcamp de AI Engineering de The Bridge). Usa datos públicos del Ayuntamiento de
+Madrid y no incluye ninguna clave: cada persona pone la suya en `.env`.
+
 ## Instalación
 
 ```bash
+git clone https://github.com/davide96a/proyect-break-2-equipo-04.git
+cd proyect-break-2-equipo-04
 python3.12 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 python -m pip install -r requirements.txt
