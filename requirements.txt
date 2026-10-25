@@ -1,24 +1,24 @@
-# Python 3.12 (mínimo 3.10). Tras la primera instalación que funcione,
-# fijad versiones exactas: python -m pip freeze > requirements-lock.txt
+# Python 3.12 (mínimo 3.10).
+# Versiones fijadas: son las que usamos en todas las pruebas del proyecto (octubre de 2026).
 
 # --- Agente (PB2) ---
-langgraph>=1.0,<2
-google-genai>=1.0
-langchain-google-genai   # LLM del grafo (permite FakeListChatModel en tests)
-python-dotenv
-requests
-streamlit>=1.50
-tzdata              # zona horaria Europe/Madrid también en Windows
+langgraph==1.2.16
+google-genai==2.31.0
+langchain-google-genai==4.4.2   # LLM del grafo (permite FakeListChatModel en tests)
+python-dotenv==1.2.4
+requests==2.34.2
+streamlit==1.66.0
+tzdata==2026.5                  # zona horaria Europe/Madrid también en Windows
 
 # --- RAG del PB1 (paquete rag/) ---
-chromadb
-sentence-transformers   # instala torch; la 1ª vez descarga el modelo (~470 MB)
-langchain-core
-langchain-text-splitters
-langchain-community
-pypdf
-pandas
-openpyxl
+chromadb==1.5.9
+sentence-transformers==6.1.0    # instala torch; la 1ª vez descarga el modelo (~470 MB)
+langchain-core==1.6.12
+langchain-text-splitters==1.1.3
+langchain-community==0.4.2
+pypdf==6.21.1
+pandas==3.0.6
+openpyxl==3.1.5
 
 # --- Tests ---
-pytest
+pytest==9.1.1
