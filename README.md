@@ -28,16 +28,10 @@ Resultado del indexado: **1714 chunks** en la colección `deporte_municipal` (~1
 locales de 384 dimensiones). `rag/chroma/` y `rag/output/` no se suben a Git: hay que indexar en local.
 Si cambia el modelo de embeddings, el chunking o el corpus, hay que volver a indexar.
 
-
-
 ## Tools y allowlist
-
-
 
 El agente tiene cuatro tools (`src/tools/`). Ninguna se ejecuta directamente: todas pasan por
 `ejecutar_tool`, la única puerta de ejecución.
-
-
 
 | Tool | Qué hace | La usa |
 |---|---|---|
@@ -45,8 +39,6 @@ El agente tiene cuatro tools (`src/tools/`). Ninguna se ejecuta directamente: to
 | `api_deporte` | Agenda de actividades deportivas del Ayuntamiento (ver abajo) | `especialista_instalaciones` |
 | `hora_actual` | Día y hora actuales en Madrid (determinista, sin red) | ambos |
 | `describir_imagen` | Imagen → texto con Gemini (ver sección de la tool multimodal) | `especialista_instalaciones` |
-
-
 
 - Cada tool devuelve un dict `{"status", "texto", ...}`; el `texto` es lo que lee el LLM.
   `status`: `ok` | `abstencion` | `error`.
@@ -57,11 +49,7 @@ El agente tiene cuatro tools (`src/tools/`). Ninguna se ejecuta directamente: to
 - `rag_ask` necesita el índice construido y `GOOGLE_API_KEY`. Si el RAG se abstiene devuelve `abstencion`
   y sin fuentes. El RAG se importa de forma diferida: el modelo de embeddings solo se carga en la primera consulta.
 
-
-
 Probar las tools fuera del grafo:
-
-
 
 ```bash
 python -m pytest -q    # tests de las tools: sin red ni clave
@@ -70,11 +58,7 @@ python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('rag_ask', {
 python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('borrar_todo'))"   # status blocked
 ```
 
-
-
 ### API externa: `api_deporte`
-
-
 
 - **Fuente:** [Agenda de actividades deportivas](https://datos.madrid.es/dataset/212504-0-agenda-actividades-deportes)
   del Ayuntamiento de Madrid (formato JSON-LD; las actividades están en `@graph`). Descargada el 20/10/2026.
@@ -85,17 +69,11 @@ python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('borrar_todo
   y lo indica en el texto: `Fuente: api (datos.madrid.es)` o `Fuente: local (copia del 20/10/2026)`.
 - **Estados:** `ok`, `abstencion` (no hay actividades vigentes que encajen) y `error` (ni API ni respaldo).
 
-
-
 ## Fuentes del corpus
-
-
 
 Descargadas de datos.madrid.es y madrid.es durante el PB1 y añadidas al repositorio del PB1 a partir del
 **13/09/2026**. Importadas a este
 repositorio el 15/10/2026. Datos públicos del Ayuntamiento de Madrid.
-
-
 
 | Fichero (`rag/data/`) | Fuente |
 |---|---|
