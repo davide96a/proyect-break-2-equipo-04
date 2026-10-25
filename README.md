@@ -84,9 +84,9 @@ repositorio el 15/10/2026. Datos públicos del Ayuntamiento de Madrid.
 | `210227-0-piscinas-publicas-csv.csv` | https://datos.madrid.es/dataset/210227-0-piscinas-publicas |
 | `300083-10-deportes-tarifas.xlsx` | https://datos.madrid.es/dataset/300083-0-deportes-tarifas |
 | `300097-3-deportes-descuentos-csv.csv` | https://datos.madrid.es/dataset/300097-0-deportes-descuentos |
-| `PreciosPublicos2026.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Colecciones/ficheros/TarifasD/PreciosPublic… |
-| `Tarifas_deportivas.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Colecciones/ficheros/TarifasD/Tarifas_depor… |
-| `20250912_InfografíaCómoAdquirirOrenovarUnADM.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Faq/ficheros/infografias%20faq%202025/20250… |
+| `PreciosPublicos2026.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Colecciones/ficheros/TarifasD/PreciosPublicos2026.pdf |
+| `Tarifas_deportivas.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Colecciones/ficheros/TarifasD/Tarifas_deportivas.pdf |
+| `20250912_InfografíaCómoAdquirirOrenovarUnADM.pdf` | https://www.madrid.es/UnidadesDescentralizadas/Deportes/Faq/ficheros/infografias%20faq%202025/20250912_Infograf%C3%ADaC%C3%B3moAdquirirOrenovarUnADM.pdf |
 | `eli-es-md-01860896-reg-2012-10-15-(1)-dof-spa.pdf` | <https://sede.madrid.es/eli/es-md-01860896/reg/2012/10/15/(1)/dof/spa/pdf> |
 
 ## Agente por terminal (CLI)
