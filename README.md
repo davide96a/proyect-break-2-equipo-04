@@ -52,6 +52,8 @@ El agente tiene cuatro tools (`src/tools/`). Ninguna se ejecuta directamente: to
 Probar las tools fuera del grafo:
 
 ```bash
+python scripts/probar_tools.py                # prueba cada tool con ejecutar_tool (rag_ask y describir_imagen usan Gemini)
+python scripts/probar_tools.py --sin-gemini   # solo las que no llaman a Gemini ni necesitan clave
 python -m pytest -q    # tests de las tools: sin red ni clave
 python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('hora_actual'))"
 python -c "from src.tools import ejecutar_tool; print(ejecutar_tool('rag_ask', {'consulta': 'cuanto cuesta la entrada a la piscina de verano para adultos'}))"
