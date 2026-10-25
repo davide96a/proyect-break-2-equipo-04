@@ -212,13 +212,17 @@ sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mis
 
 ## 5. Tres fallos observados
 
-**Fallo 1 (Davide) · La memoria une preguntas que no estaban relacionadas.**
-- *Qué pasó:* tras preguntar el precio de la piscina, «¿Y qué actividades hay esta semana?» se unió a la
-  pregunta anterior porque es corta (≤ 6 palabras). El RAG contestó a medias («4,5 €… no tengo información
-  de actividades») y la tool lo marcó como `abstencion` aunque contenía un dato útil.
-- *Causa:* la regla "pregunta corta = seguimiento de la anterior" es demasiado simple.
-- *Qué hacemos:* queda documentado; la mejora es que el LLM reescriba la pregunta usando el historial, con
-  la regla actual como fallback.
+**Fallo 1 (Davide) · La regla de memoria falla en los dos sentidos.**
+- *Qué pasó (1):* tras preguntar el precio de la piscina, «¿Y qué actividades hay esta semana?» se unió a la
+  pregunta anterior porque es corta (≤ 6 palabras). El RAG contestó a medias («4,5 €… no tengo información de
+  actividades») y la tool lo marcó como `abstencion` aunque contenía un dato útil.
+- *Qué pasó (2):* al revés, «¿Y cuánto cuesta para mayores de 65 años?» tiene 8 palabras y no se completó con la
+  pregunta anterior. El RAG recibió la pregunta sola, recuperó las tarifas de las barcas de recreo y respondió que
+  no tenía el dato, aunque el corpus sí tiene la entrada de piscina de verano para «Mayor» (1,35 €): con «entrada
+  piscina de verano mayores de 65 años» sí aparece (detectado por María; ver sección 4).
+- *Causa:* la regla "pregunta corta = seguimiento de la anterior" decide por número de palabras, no por significado.
+- *Qué haríamos:* que el LLM reescriba la pregunta usando el historial del `thread_id`, con la regla actual como
+  fallback (ver siguientes pasos).
 
 **Fallo 2 (María) · Gemini devuelve 503 y la tool no puede responder.**
 - *Qué pasó:* durante las pruebas, Gemini devolvió con frecuencia `503 UNAVAILABLE` ("high demand") al
@@ -258,3 +262,10 @@ sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mis
 - Registrar cada turno de la app (latencia, tools usadas con su `status` y errores de Gemini) para monitorizar el
   uso real.
 - Medir el coste por turno (llamadas y tokens a Gemini).
+
+**Davide (grafo y agente)**
+- Reescribir la pregunta con el LLM usando el historial del `thread_id` (con la regla actual como fallback): resuelve el fallo 1 en sus dos sentidos.
+- Checkpointer persistente (`SqliteSaver` o Postgres) en lugar de `MemorySaver`: hoy la memoria y los planes pendientes se pierden al reiniciar la app.
+- Salida estructurada en el supervisor y los especialistas (`with_structured_output` + Pydantic) en vez de interpretar texto: menos fallbacks por "respuesta no válida".
+- Evaluar el enrutado: un set de preguntas etiquetadas con el especialista correcto para medir los aciertos del supervisor y la tasa de fallback antes y después de cada cambio de prompt.
+- Añadir a la CI un smoke test del grafo con `USE_MOCKS=1` (`python main.py --demo --auto-aprobar`).
