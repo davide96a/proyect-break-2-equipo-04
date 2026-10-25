@@ -194,7 +194,7 @@ plan:      Consultar la tarifa oficial para adultos en el documento de deportes.
 → «✅ Plan aprobado y guardado en salidas/plan_20261024_232712.md.»
 ```
 
-![Tras aprobar: confirmación en el chat y done=true en el panel de debug](capturas/07_hitl_aprobado.png)
+![Tras aprobar: confirmación en el chat y done=true en el panel de debug](capturas/05_hitl_aprobado.png)
 
 *Rechazo.* Pregunta en la misma conversación: «¿Y cuánto cuesta para mayores de 65 años?»
 
