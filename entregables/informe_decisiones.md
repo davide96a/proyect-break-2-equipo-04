@@ -126,6 +126,9 @@ la red y el RAG con `monkeypatch`.
   Los días de recurrencia están en el dato, así que filtrar por día de la semana es viable.
 - `rag_ask` hereda del PB1 la detección de abstención por la frase exacta: si el modelo mezcla un dato útil
   con "no tengo información…", la respuesta cuenta como `abstencion` (ver Fallo 1).
+- Una pregunta de seguimiento de más de 6 palabras no se completa con la anterior (ver Fallo 1), y la
+  recuperación devuelve otros servicios aunque el dato exista (por ejemplo, la tarifa «Mayor» de la entrada de
+  piscina de verano, 1,35 €).
 
 ## 4. Multimodal y HITL en Streamlit (Alex)
 
@@ -206,9 +209,11 @@ plan:      Consultar la fuente 300083-10-deportes-tarifas.xlsx para verificar si
 ```
 
 **Qué se observó.** La primera respuesta está respaldada por la fuente y su aprobación genera la ficha en `salidas/`.
-La segunda no contiene el dato pedido, pero se propone igualmente un plan: la abstención solo se detecta por la
-frase exacta y esta respuesta no la usa, así que `rag_ask` la marca como `ok`. El rechazo evita guardar un plan
-sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
+La segunda no recoge el dato pedido: el corpus sí tiene la tarifa de la categoría «Mayor» (1,35 €), pero la
+pregunta de seguimiento llegó al RAG sin el contexto de la piscina (ver Fallo 1) y la recuperación devolvió otros
+servicios (barcas de recreo). Aun así se propone un plan: la abstención solo se detecta por la frase exacta y esta
+respuesta no la usa, así que `rag_ask` la marca como `ok`. El rechazo evita guardar un plan sin respaldo, no crea
+ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
 
 ## 5. Tres fallos observados
 
@@ -251,6 +256,8 @@ sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mis
 - Mejorar el retrieval del RAG (en el PB1, 4/10 con k=3 y 5/10 con k=5) y medirlo antes y después con la
   evaluación de 13 preguntas: repetir el nombre del centro en cada fragmento, búsqueda híbrida y k mayor por defecto.
 - Umbral de similitud para abstenerse antes de llamar a Gemini: ahorra una llamada por consulta fuera de corpus.
+- Reformular la consulta con el historial antes de llamar a `rag_ask` (ver el primer paso de Davide), para que las
+  preguntas de seguimiento no pierdan contexto.
 
 **Alex (interfaz y multimodal)**
 - Prompt de `describir_imagen` que limite la respuesta a lo que se ve en la imagen, sin enlaces ni datos externos,
