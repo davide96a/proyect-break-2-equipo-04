@@ -129,7 +129,7 @@ la red y el RAG con `monkeypatch`.
 - Una pregunta de seguimiento de más de 6 palabras no se completa con la anterior (ver Fallo 1), y la
   recuperación devuelve otros servicios aunque el dato exista (por ejemplo, la tarifa «Mayor» de la entrada de
   piscina de verano, 1,35 €).
-  
+
 ## 4. Multimodal y HITL en Streamlit (Alex)
 
 ### Tool multimodal
@@ -256,6 +256,8 @@ ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
 - Mejorar el retrieval del RAG (en el PB1, 4/10 con k=3 y 5/10 con k=5) y medirlo antes y después con la
   evaluación de 13 preguntas: repetir el nombre del centro en cada fragmento, búsqueda híbrida y k mayor por defecto.
 - Umbral de similitud para abstenerse antes de llamar a Gemini: ahorra una llamada por consulta fuera de corpus.
+- Reformular la consulta con el historial antes de llamar a `rag_ask` (ver el primer paso de Davide), para que las
+  preguntas de seguimiento no pierdan contexto.
 
 **Alex (interfaz y multimodal)**
 - Prompt de `describir_imagen` que limite la respuesta a lo que se ve en la imagen, sin enlaces ni datos externos,
