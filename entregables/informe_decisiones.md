@@ -129,7 +129,86 @@ la red y el RAG con `monkeypatch`.
 
 ## 4. Multimodal y HITL en Streamlit (Alex)
 
-*Pendiente.*
+### Tool multimodal
+
+El agente trabaja con texto. Para responder sobre una imagen dispone de la tool multimodal `describir_imagen`, que
+recibe una imagen y devuelve una descripción en texto que el resto del grafo puede usar. Se prueba con una imagen
+demo del dominio.
+
+**Imagen demo.** `assets/imagen_demo.jpg` es la primera página de la infografía «Cómo adquirir online un Abono
+Deporte Madrid» del Ayuntamiento (`rag/data/20250912_InfografíaCómoAdquirirOrenovarUnADM.pdf`, exportada a JPG). Se eligió porque pertenece al dominio, tiene texto legible y presenta la información de forma visual:
+cuatro pasos numerados sobre capturas de la web municipal. El RAG solo indexa el texto extraído del PDF, sin la
+disposición visual; la tool trabaja directamente sobre la imagen.
+
+**Integración en el agente.** La tool envía a Gemini la imagen y la pregunta del usuario en una sola llamada y
+devuelve una descripción en texto. La utiliza `especialista_instalaciones`, siempre con la imagen demo: el archivo
+lo determina Python, no el LLM. Además:
+
+- Solo lee imágenes de `assets/` (`.jpg`, `.jpeg`, `.png` o `.webp`), para que nunca se envíe otro archivo a Gemini.
+- Usa `temperature=0`, como el resto del proyecto, para que la descripción sea estable.
+
+**Resultado con la imagen demo** (Gemini, `gemini-3.1-flash-lite`):
+
+```
+describir_imagen()
+→ status ok · "Esta infografía explica los pasos para adquirir o renovar el "Abono Deporte Madrid" de forma online
+  a través del portal web del Ayuntamiento de Madrid. El documento detalla el proceso, que incluye iniciar sesión,
+  acceder a la sección "Mis gestiones" y elegir entre las opciones de "Alta" (para nuevos usuarios o cambios de
+  abono) o "Renovación" (para mantener el abono actual). La guía, actualizada al 12/09/2025, incluye capturas de
+  pantalla numeradas que ilustran la interfaz del sitio web para facilitar la navegación del usuario."
+```
+
+La descripción recoge correctamente el contenido de la infografía: los pasos, las dos opciones (Alta y
+Renovación) y la fecha de actualización.
+
+Cuando se le pasa una pregunta, la respuesta se centra en ella (por ejemplo, enumera los cuatro pasos), aunque
+puede añadir datos que no aparecen en la imagen (fallo 3).
+
+Dentro del agente, la pregunta «¿Qué se ve en la imagen?» se dirige a `especialista_instalaciones`, que llama a
+`describir_imagen` (`ok`), y `sintetizar` propone un plan de cuatro pasos basado en la infografía:
+
+![Respuesta del agente a partir de la imagen demo](capturas/03_multimodal.png)
+![Traza: especialista_instalaciones → describir_imagen ok](capturas/04_multimodal_debug.png)
+
+### HITL en Streamlit
+
+En la interfaz web el HITL funciona igual que en la CLI (sección 2): el grafo se detiene antes de `aplicar` y la
+decisión la toma una persona. Cuando hay un plan pendiente (`pendiente_hitl=true`), la barra lateral muestra el
+plan con los botones **Aprobar** y **Rechazar**, y el chat se desactiva hasta que se decide. Cada botón llama a
+`aprobar_plan(thread_id, aprobado)`; la interfaz no contiene lógica del grafo.
+
+![Plan pendiente con los botones Aprobar y Rechazar](capturas/01_chat_hitl.png)
+
+**Ejecución real** (Streamlit con Gemini y el RAG, en la misma conversación, 24/10/2026):
+
+*Aprobación.* Pregunta: «¿Cuánto cuesta la entrada a la piscina de verano para adultos?»
+
+```
+respuesta: La entrada para adultos a la piscina de verano tiene un coste de 4,5 €
+           (Fuente: 300083-10-deportes-tarifas.xlsx).
+plan:      Consultar la tarifa oficial para adultos en el documento de deportes.
+→ Aprobar · aplicar → aprobado · pendiente_hitl=false · done=true
+→ «✅ Plan aprobado y guardado en salidas/plan_20261024_232712.md.»
+```
+
+![Tras aprobar: confirmación en el chat y done=true en el panel de debug](capturas/07_hitl_aprobado.png)
+
+*Rechazo.* Pregunta en la misma conversación: «¿Y cuánto cuesta para mayores de 65 años?»
+
+```
+respuesta: No dispongo de información en los documentos proporcionados sobre el precio de la entrada a la piscina
+           de verano para mayores de 65 años. Solo cuento con datos sobre descuentos para el servicio de barcas
+           de recreo (Fuente: 300083-10-deportes-tarifas.xlsx).
+plan:      Consultar la fuente 300083-10-deportes-tarifas.xlsx para verificar si existen tarifas específicas
+           para mayores de 65 años en otros servicios deportivos.
+→ Rechazar · aplicar → rechazado · pendiente_hitl=false · done=false
+→ «Plan rechazado. Dime qué quieres cambiar y lo preparo de nuevo.»
+```
+
+**Qué se observó.** La primera respuesta está respaldada por la fuente y su aprobación genera la ficha en `salidas/`.
+La segunda no contiene el dato pedido, pero se propone igualmente un plan: la abstención solo se detecta por la
+frase exacta y esta respuesta no la usa, así que `rag_ask` la marca como `ok`. El rechazo evita guardar un plan
+sin respaldo, no crea ningún archivo y la conversación sigue abierta en el mismo `thread_id`.
 
 ## 5. Tres fallos observados
 
@@ -150,7 +229,14 @@ la red y el RAG con `monkeypatch`.
 - *Qué haríamos:* un reintento con espera corta ante 503, solo en errores temporales (no en clave inválida),
   manteniendo `error` si vuelve a fallar.
 
-**Fallo 3 (Alex).** *Pendiente.*
+**Fallo 3 (Alex) · La descripción de la imagen incluye datos que no aparecen en ella.**
+- *Qué pasó:* al preguntar «¿Qué pasos hay que seguir para sacar el abono online?», `describir_imagen` enumeró
+  bien los cuatro pasos, pero añadió el enlace `https://deportesweb.madrid.es`, que no figura en la infografía
+  (solo pone «DeportesWeb»). Ocurrió en dos ejecuciones distintas, también con `temperature=0`.
+- *Causa:* la tool devuelve texto generado por el modelo a partir de la imagen, no un dato extraído y
+  verificado; el modelo completa con lo que «sabe» del tema.
+- *Qué haríamos:* indicar en el prompt que describa solo lo que se ve en la imagen y que no añada enlaces ni
+  datos externos, y comprobarlo con varias preguntas sobre la misma imagen.
 
 ## 6. Siguientes pasos (MLOps)
 
@@ -161,3 +247,14 @@ la red y el RAG con `monkeypatch`.
 - Mejorar el retrieval del RAG (en el PB1, 4/10 con k=3 y 5/10 con k=5) y medirlo antes y después con la
   evaluación de 13 preguntas: repetir el nombre del centro en cada fragmento, búsqueda híbrida y k mayor por defecto.
 - Umbral de similitud para abstenerse antes de llamar a Gemini: ahorra una llamada por consulta fuera de corpus.
+
+**Alex (interfaz y multimodal)**
+- Prompt de `describir_imagen` que limite la respuesta a lo que se ve en la imagen, sin enlaces ni datos externos,
+  y comprobarlo con varias preguntas sobre la misma imagen (fallo 3).
+- Empaquetar la app (Streamlit + agente + índice del RAG) para desplegarla, con la clave de Gemini como secreto
+  del entorno en lugar de un `.env`.
+- Pasar los tests en cada PR con GitHub Actions: los 48 actuales no necesitan red ni clave, incluidos los de la
+  interfaz con `AppTest`.
+- Registrar cada turno de la app (latencia, tools usadas con su `status` y errores de Gemini) para monitorizar el
+  uso real.
+- Medir el coste por turno (llamadas y tokens a Gemini).

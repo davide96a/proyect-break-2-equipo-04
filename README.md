@@ -183,6 +183,8 @@ USE_MOCKS=1 streamlit run app.py       # tools falsas: sin índice del RAG ni re
 - **Nueva conversación:** vacía el chat y empieza con un `thread_id` nuevo (sin memoria de la anterior).
 - **Estado / log / tools (debug):** expander al final de la página con lo que hizo el agente en el último turno.
 
+![Chat con un plan pendiente y los botones Aprobar / Rechazar en la barra lateral](entregables/capturas/01_chat_hitl.png)
+
 ### Probar el human-in-the-loop en la web
 
 1. Pregunta, p. ej. «¿Cuánto cuesta la entrada a la piscina de verano para adultos?» → la respuesta sale con
@@ -199,6 +201,8 @@ El expander **Estado / log / tools (debug)** muestra el último turno:
 - **Traza de tools:** una tabla con una fila por llamada (`tool`, `status`, `preview`). El `status` dice si la tool
   dio datos (`ok`), se abstuvo (`abstencion`), falló (`error`) o la bloqueó la allowlist (`blocked`).
 
+![Panel de debug: flags, log del grafo y traza de tools](entregables/capturas/02_debug.png)
+
 ```bash
 python -m pytest tests/test_app.py -v   # HITL y panel de debug (AppTest, sin red ni clave)
 ```
@@ -211,6 +215,9 @@ Imagen → texto con Gemini (`src/tools/describir_imagen.py`). Envía los bytes 
 - **Imagen demo:** `assets/imagen_demo.jpg`, la infografía «Cómo adquirir online un Abono Deporte Madrid». Sin ruta, la tool usa esta imagen.
 - **En el grafo:** la usa `especialista_instalaciones` cuando la pregunta menciona imagen, foto, cartel o infografía.
 - **Requiere** `GOOGLE_API_KEY` en `.env` (mismo modelo que el grafo, `LLM_MODEL`).
+
+**Cómo verla en el agente:** pregunta directamente por la imagen, p. ej. **«¿Qué se ve en la imagen?»**.
+El supervisor manda la pregunta a `especialista_instalaciones`, que llama a `describir_imagen`.
 
 Probarla aislada:
 
