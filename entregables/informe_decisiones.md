@@ -126,7 +126,10 @@ la red y el RAG con `monkeypatch`.
   Los días de recurrencia están en el dato, así que filtrar por día de la semana es viable.
 - `rag_ask` hereda del PB1 la detección de abstención por la frase exacta: si el modelo mezcla un dato útil
   con "no tengo información…", la respuesta cuenta como `abstencion` (ver Fallo 1).
-
+- Una pregunta de seguimiento de más de 6 palabras no se completa con la anterior (ver Fallo 1), y la
+  recuperación devuelve otros servicios aunque el dato exista (por ejemplo, la tarifa «Mayor» de la entrada de
+  piscina de verano, 1,35 €).
+  
 ## 4. Multimodal y HITL en Streamlit (Alex)
 
 ### Tool multimodal
