@@ -1,4 +1,4 @@
-# Agente Deporte municipal de Madrid — Project Break 2
+# Agente Deporte municipal de Madrid — Project Break 2 
 
 Agente multiagente con **LangGraph** que amplía el RAG del Project Break 1
 (instalaciones, tarifas y normas del deporte municipal de Madrid).
