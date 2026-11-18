@@ -1,6 +1,6 @@
 # Agente Deporte municipal de Madrid — Project Break 2
 
-Agente multiagente con **LangGraph** que amplía el RAG del Project Break 1
+Agente multiagente con **LangGraph** que amplía el RAG del Project Break 1 
 (instalaciones, tarifas y normas del deporte municipal de Madrid).
 
 Equipo 04 — María Muriel · Davide Campi · Alejandro Dietta
